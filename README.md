@@ -5,5 +5,5 @@
 Remove the Neovim configuration you have and clone the repository.
 ```
 rm -r ~/.config/nvim
-git clone https://github.com/santtiag/nvim.git ~/.config/
+git clone https://github.com/santtiag/nvim.git ~/.config/nvim
 ```
