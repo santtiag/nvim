@@ -45,11 +45,11 @@ bufferline.setup {
                 separator = true -- use a "true" to enable the default, or set your own character
             }
         },
-        separator_style = "thin", --"padded_slope" | "thin" | "slant" | "thick" | { 'any', 'any' },
+        separator_style = "slant", -- | "padded_slope" | "thin" | "slant" | "thick" | { 'any', 'any' },
         buffer_close_icon = "⚔︎",
-        indicator = {
-            style = 'underline',
-        },
+        -- indicator = {
+        --     style = 'underline',
+        -- },
         diagnostics = "nvim_lsp",
         show_buffer_icons = true,
         diagnostics_indicator = function(count, level)
