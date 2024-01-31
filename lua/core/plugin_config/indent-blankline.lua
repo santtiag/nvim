@@ -1,7 +1,7 @@
 require("ibl").setup({
     indent = {
-        char = "│",
-        tab_char = "│",
+        char = "▏", -- │
+        tab_char = "▏",
     },
     scope = { enabled = false },
     exclude = {

@@ -13,6 +13,7 @@ vim.opt.tabstop = 4
 vim.opt.shiftwidth = 4
 vim.opt.shiftround = true
 vim.opt.expandtab = true
+vim.opt.showbreak = "↪ "
 vim.cmd('set number')
 vim.cmd('set relativenumber')
 vim.cmd('set cmdheight=0')
