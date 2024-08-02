@@ -16,10 +16,32 @@ require('lazy').setup({
 
     'nvim-tree/nvim-web-devicons',
     'nvim-lualine/lualine.nvim',
+
+    -- INFO: THEMES --Start--
+
     -- catppuccin
     {
-        "catppuccin/nvim", name = "catppuccin", priority = 1000
+        "catppuccin/nvim",
+        name = "catppuccin",
+        priority = 1000,
+        opts = {}
     },
+    -- gruvbox
+    {
+        "ellisonleao/gruvbox.nvim",
+        priority = 1000,
+        config = true,
+        opts = {}
+    },
+    -- tokyo-ngight
+    {
+        "folke/tokyonight.nvim",
+        lazy = false,
+        priority = 1000,
+        opts = {},
+    },
+    -- INFO: --End--
+
     {
         "williamboman/mason.nvim",
         "williamboman/mason-lspconfig.nvim",
@@ -90,8 +112,8 @@ require('lazy').setup({
             -- dashboard.section.footer.val = fortune
 
             dashboard.config.opts.noautocmd = true
-
-            vim.cmd [[autocmd User AlphaReady echo 'ready']]
+            -- Print a message
+            -- vim.cmd [[autocmd User AlphaReady echo 'ready']]
 
             alpha.setup(dashboard.config)
         end
@@ -235,9 +257,6 @@ require('lazy').setup({
     -- BigFile
     "LunarVim/bigfile.nvim",
 
-    -- Tabnine
-    { 'codota/tabnine-nvim', build = "./dl_binaries.sh" },
-
     'mfussenegger/nvim-dap',
 
     -- fancy UI for the debugger
@@ -271,5 +290,14 @@ require('lazy').setup({
     {
         "theHamsta/nvim-dap-virtual-text",
         opts = {},
+    },
+    {
+        "folke/todo-comments.nvim",
+        dependencies = { "nvim-lua/plenary.nvim" },
+        opts = {
+            -- your configuration comes here
+            -- or leave it empty to use the default settings
+            -- refer to the configuration section below
+        }
     },
 })

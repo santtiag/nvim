@@ -1,5 +1,5 @@
 require("mason-lspconfig").setup({
-    ensure_installed = { "lua_ls", "cssls", "tsserver", "pyright", "html", "angularls" }
+    ensure_installed = { "lua_ls", "cssls", "tsserver", "pyright", "html", }
 })
 
 local lspconfig = require('lspconfig')
@@ -14,6 +14,7 @@ lsp_defaults.capabilities = vim.tbl_deep_extend(
     require('cmp_nvim_lsp').default_capabilities()
 )
 
+-- INFO: Lsp --Start--
 require("lspconfig").lua_ls.setup {
     settings = {
         Lua = {
@@ -29,8 +30,6 @@ require("lspconfig").lua_ls.setup {
         },
     }
 }
-
-require 'lspconfig'.angularls.setup {}
 require('lspconfig').tsserver.setup({})
 require('lspconfig').pyright.setup({})
 require('lspconfig').cssls.setup({
@@ -40,7 +39,18 @@ require('lspconfig').html.setup({
     capabilities = capabilities,
 })
 require 'lspconfig'.lua_ls.setup {}
-require 'lspconfig'.tailwindcss.setup {}
+require 'lspconfig'.rust_analyzer.setup {
+    settings = {
+        ['rust-analyzer'] = {
+            diagnostics = {
+                enable = true,
+            }
+        }
+    }
+}
+-- Others...
+
+-- INFO: --Edn--
 
 vim.api.nvim_create_autocmd('LspAttach', {
     group = vim.api.nvim_create_augroup('UserLspConfig', {}),
@@ -51,18 +61,24 @@ vim.api.nvim_create_autocmd('LspAttach', {
         -- Buffer local mappings.
         -- See `:help vim.lsp.*` for documentation on any of the below functions
         local opts = { buffer = ev.buf }
-        vim.keymap.set('n', '<leader>lD', vim.lsp.buf.declaration, vim.tbl_extend('force', opts, { desc = 'Declaration' }))
+        vim.keymap.set('n', '<leader>lD', vim.lsp.buf.declaration,
+            vim.tbl_extend('force', opts, { desc = 'Declaration' }))
         vim.keymap.set('n', '<leader>ld', vim.lsp.buf.definition, vim.tbl_extend('force', opts, { desc = 'Definition' }))
         vim.keymap.set('n', 'K', vim.lsp.buf.hover, opts)
-        vim.keymap.set('n', '<leader>li', vim.lsp.buf.implementation, vim.tbl_extend('force', opts, { desc = 'Implementation' }))
-        vim.keymap.set('n', '<leader>la', vim.lsp.buf.add_workspace_folder, vim.tbl_extend('force', opts, { desc = 'Add Workspace Folder' }))
-        vim.keymap.set('n', '<leader>lr', vim.lsp.buf.remove_workspace_folder, vim.tbl_extend('force', opts, { desc = 'Remove Workspace Folder' }))
+        vim.keymap.set('n', '<leader>li', vim.lsp.buf.implementation,
+            vim.tbl_extend('force', opts, { desc = 'Implementation' }))
+        vim.keymap.set('n', '<leader>la', vim.lsp.buf.add_workspace_folder,
+            vim.tbl_extend('force', opts, { desc = 'Add Workspace Folder' }))
+        vim.keymap.set('n', '<leader>lr', vim.lsp.buf.remove_workspace_folder,
+            vim.tbl_extend('force', opts, { desc = 'Remove Workspace Folder' }))
         vim.keymap.set('n', '<leader>ll', function()
             print(vim.inspect(vim.lsp.buf.list_workspace_folders()))
         end, vim.tbl_extend('force', opts, { desc = 'List Workspace Folders' }))
-        vim.keymap.set('n', '<leader>lt', vim.lsp.buf.type_definition, vim.tbl_extend('force', opts, { desc = 'Type Definition' }))
+        vim.keymap.set('n', '<leader>lt', vim.lsp.buf.type_definition,
+            vim.tbl_extend('force', opts, { desc = 'Type Definition' }))
         vim.keymap.set('n', '<leader>lR', vim.lsp.buf.rename, vim.tbl_extend('force', opts, { desc = 'Rename' }))
-        vim.keymap.set({ 'n', 'v' }, '<leader>lc', vim.lsp.buf.code_action, vim.tbl_extend('force', opts, { desc = 'Code Action' }))
+        vim.keymap.set({ 'n', 'v' }, '<leader>lc', vim.lsp.buf.code_action,
+            vim.tbl_extend('force', opts, { desc = 'Code Action' }))
         vim.keymap.set('n', 'gr', vim.lsp.buf.references, vim.tbl_extend('force', opts, { desc = 'References' }))
         vim.keymap.set('n', '<leader>F', function()
             vim.lsp.buf.format({ async = true })
@@ -79,4 +95,3 @@ vim.diagnostic.config({
         prefix = '●',
     }
 })
-

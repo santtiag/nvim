@@ -17,12 +17,16 @@ require('core.plugin_config.mini-cursorword')
 require('core.plugin_config.mini-indent-scope')
 require('core.plugin_config.neodev')
 require('core.plugin_config.neo-tree')
-require('core.plugin_config.catppuccin')
 require('core.plugin_config.colorizer')
 require('core.plugin_config.indent-blankline')
 require('core.plugin_config.gitsign')
 require('core.plugin_config.smooth-cursor')
 require('core.plugin_config.trouble')
 require('core.plugin_config.bigfile')
-require('core.plugin_config.tabnine')
 require('core.plugin_config.dap')
+
+-- INFO: Themes
+require('core.plugin_config.themes.catppuccin')
+require('core.plugin_config.themes.gruvbox')
+require('core.plugin_config.themes.tokyo-night')
+
