@@ -92,99 +92,174 @@ require("which-key").setup {
 -- Which-Key
 local wk = require("which-key")
 
-wk.register({
+-- wk.register({
 
-    ["<leader>m"] = { "<cmd>TSJToggle<CR>", "TreeSJ Toogle" },
+--     ["<leader>m"] = { "<cmd>TSJToggle<CR>", "TreeSJ Toogle" },
 
-    ["<leader>l"] = { '', "Lsp Config" },
-    ["<leader>f"] = { name = "Find" },
-    ["<leader>x"] = { name = "Trouble" },
+--     ["<leader>l"] = { '', "Lsp Config" },
+--     ["<leader>f"] = { name = "Find" },
+--     ["<leader>x"] = { name = "Trouble" },
 
-    -- MarkDown
-    ["mo"] = { '<Plug>MarkdownPreview', 'Open MarkDown' },
-    ["mc"] = { "<Plug>MarkdownPreviewStop", "Close MarkDown" },
+--     -- MarkDown
+--     ["mo"] = { '<Plug>MarkdownPreview', 'Open MarkDown' },
+--     ["mc"] = { "<Plug>MarkdownPreviewStop", "Close MarkDown" },
 
-    -- Exit
-    ["<leader>q"] = { "<cmd>qa<cr>", "Exit" },
-
-
-    -- Cellular Automaton
-    ["<leader>c"] = { name = "Cellular Automaton" },
-    ["<leader>cm"] = { "<cmd>CellularAutomaton make_it_rain<CR>", "make_it_rain" },
-    ["<leader>cg"] = { "<cmd>CellularAutomaton game_of_life<CR>", "game_of_life" },
-    ["<leader>cs"] = { "<cmd>CellularAutomaton scramble<CR>", "scramble" },
-
-    --LazyGit
-    -- ["<leader>g"] = { name = "Git" },
-    -- ["<leader>gg"] = { "<cmd>LazyGit<CR>", "LazyGit" },
-    -- ["<leader>gc"] = { "<cmd>LazyGitConfig<CR>", "LazyGitConfig" },
-    -- ["<leader>gr"] = { "<cmd>LazyGitCurrentFile<CR>", "LazyGitCurrentFile" },
-    -- ["<leader>gf"] = { "<cmd>LazyGitFilter<CR>", "LazyGitFilter" },
-    -- ["<leader>gh"] = { "<cmd>LazyGitFilterCurrentFile<CR>", "LazyGitFilterCurrentFile" },
-
-    -- Bufferline
-    ["<leader>b"] = { name = "Bufferline" },
-
-    ["<leader>bc"] = { name = "Close" },
-    ["<leader>bcl"] = { "<cmd>BufferLineCloseLeft<CR>", "Left" },
-    ["<leader>bco"] = { "<cmd>BufferLineCloseOthers<CR>", "Others" },
-    ["<leader>bcr"] = { "<cmd>BufferLineCloseRight<CR>", "Right" },
-
-    ["<leader>by"] = { name = "Cycle" },
-    ["<leader>byn"] = { "<cmd>BufferLineCycleNext<CR>", "Next" },
-    ["<leader>byp"] = { "<cmd>BufferLineCyclePrev<CR>", "Prev" },
-
-    ["<leader>bg"] = { name = "Group" },
-    ["<leader>bgc"] = { "<cmd>BufferLineGroupClose<CR>", "Close" },
-    ["<leader>bgt"] = { "<cmd>BufferLineGroupToggle<CR>", "Toggle" },
+--     -- Exit
+--     ["<leader>q"] = { "<cmd>qa<cr>", "Exit" },
 
 
-    ["<leader>bm"] = { name = "Move" },
-    ["<leader>bmn"] = { "<cmd>BufferLineMoveNext<CR>", "Next" },
-    ["<leader>bmp"] = { "<cmd>BufferLineMovePrev<CR>", "Prev" },
+--     -- Cellular Automaton
+--     ["<leader>c"] = { name = "Cellular Automaton" },
+--     ["<leader>cm"] = { "<cmd>CellularAutomaton make_it_rain<CR>", "make_it_rain" },
+--     ["<leader>cg"] = { "<cmd>CellularAutomaton game_of_life<CR>", "game_of_life" },
+--     ["<leader>cs"] = { "<cmd>CellularAutomaton scramble<CR>", "scramble" },
+
+--     --LazyGit
+--     -- ["<leader>g"] = { name = "Git" },
+--     -- ["<leader>gg"] = { "<cmd>LazyGit<CR>", "LazyGit" },
+--     -- ["<leader>gc"] = { "<cmd>LazyGitConfig<CR>", "LazyGitConfig" },
+--     -- ["<leader>gr"] = { "<cmd>LazyGitCurrentFile<CR>", "LazyGitCurrentFile" },
+--     -- ["<leader>gf"] = { "<cmd>LazyGitFilter<CR>", "LazyGitFilter" },
+--     -- ["<leader>gh"] = { "<cmd>LazyGitFilterCurrentFile<CR>", "LazyGitFilterCurrentFile" },
+
+--     -- Bufferline
+--     ["<leader>b"] = { name = "Bufferline" },
+
+--     ["<leader>bc"] = { name = "Close" },
+--     ["<leader>bcl"] = { "<cmd>BufferLineCloseLeft<CR>", "Left" },
+--     ["<leader>bco"] = { "<cmd>BufferLineCloseOthers<CR>", "Others" },
+--     ["<leader>bcr"] = { "<cmd>BufferLineCloseRight<CR>", "Right" },
+
+--     ["<leader>by"] = { name = "Cycle" },
+--     ["<leader>byn"] = { "<cmd>BufferLineCycleNext<CR>", "Next" },
+--     ["<leader>byp"] = { "<cmd>BufferLineCyclePrev<CR>", "Prev" },
+
+--     ["<leader>bg"] = { name = "Group" },
+--     ["<leader>bgc"] = { "<cmd>BufferLineGroupClose<CR>", "Close" },
+--     ["<leader>bgt"] = { "<cmd>BufferLineGroupToggle<CR>", "Toggle" },
 
 
-    ["<leader>bp"] = { "<cmd>BufferLinePick<CR>", "Pick" },
-    ["<leader>bP"] = { "<cmd>BufferLinePickClose<CR>", "Pick Close" },
-
-    ["<leader>bs"] = { name = "SortBy" },
-    ["<leader>bsd"] = { "<cmd>BufferLineSortByDirectory<CR>", "Directory" },
-    ["<leader>bse"] = { "<cmd>BufferLineSortByExtension<CR>", "Extension" },
-    ["<leader>bsr"] = { "<cmd>BufferLineSortByRelativeDirectory<CR>", "RelativeDirectory" },
-    ["<leader>bst"] = { "<cmd>BufferLineSortByTabs<CR>", "Tabs" },
-
-    ["<leader>bt"] = { "<cmd>BufferLineTogglePin<CR>", "Toggle Pin" },
-
-    -- Split windows
-    ["<leader>w"] = { name = "Window" },
-    ["<leader>w|"] = { "<C-W>v", "Horizontal" },
-    ["<leader>w-"] = { "<C-W>s", "Vertical" },
-    ["<leader>ww"] = { "<C-W>p", "Other window" },
-    ["<leader>wd"] = { "<C-W>c", "Delete window" },
-
-    -- Git
-    ["<leader>g"] = { name = "Git" },
-
-    -- DAP UI
-    ["<leader>d"] = { name = "DAP" },
-    ["<leader>dB"] = { function() require("dap").set_breakpoint(vim.fn.input('Breakpoint condition: ')) end, "Breakpoint Condition" },
-    ["<leader>db"] = { function() require("dap").toggle_breakpoint() end, "Toggle Breakpoint" },
-    ["<leader>dc"] = { function() require("dap").continue() end, "Continue" },
-    ["<leader>da"] = { function() require("dap").continue({ before = get_args }) end, "Run with Args" },
-    ["<leader>dC"] = { function() require("dap").run_to_cursor() end, "Run to Cursor" },
-    ["<leader>dg"] = { function() require("dap").goto_() end, "Go to line (no execute)" },
-    ["<leader>di"] = { function() require("dap").step_into() end, "Step Into" },
-    ["<leader>dj"] = { function() require("dap").down() end, "Down" },
-    ["<leader>dk"] = { function() require("dap").up() end, "Up" },
-    ["<leader>dl"] = { function() require("dap").run_last() end, "Run Last" },
-    ["<leader>do"] = { function() require("dap").step_out() end, "Step Out" },
-    ["<leader>dO"] = { function() require("dap").step_over() end, "Step Over" },
-    ["<leader>dp"] = { function() require("dap").pause() end, "Pause" },
-    ["<leader>dr"] = { function() require("dap").repl.toggle() end, "Toggle REPL" },
-    ["<leader>ds"] = { function() require("dap").session() end, "Session" },
-    ["<leader>dt"] = { function() require("dap").terminate() end, "Terminate" },
-    ["<leader>dw"] = { function() require("dap.ui.widgets").hover() end, "Widgets" },
+--     ["<leader>bm"] = { name = "Move" },
+--     ["<leader>bmn"] = { "<cmd>BufferLineMoveNext<CR>", "Next" },
+--     ["<leader>bmp"] = { "<cmd>BufferLineMovePrev<CR>", "Prev" },
 
 
+--     ["<leader>bp"] = { "<cmd>BufferLinePick<CR>", "Pick" },
+--     ["<leader>bP"] = { "<cmd>BufferLinePickClose<CR>", "Pick Close" },
+
+--     ["<leader>bs"] = { name = "SortBy" },
+--     ["<leader>bsd"] = { "<cmd>BufferLineSortByDirectory<CR>", "Directory" },
+--     ["<leader>bse"] = { "<cmd>BufferLineSortByExtension<CR>", "Extension" },
+--     ["<leader>bsr"] = { "<cmd>BufferLineSortByRelativeDirectory<CR>", "RelativeDirectory" },
+--     ["<leader>bst"] = { "<cmd>BufferLineSortByTabs<CR>", "Tabs" },
+
+--     ["<leader>bt"] = { "<cmd>BufferLineTogglePin<CR>", "Toggle Pin" },
+
+--     -- Split windows
+--     ["<leader>w"] = { name = "Window" },
+--     ["<leader>w|"] = { "<C-W>v", "Horizontal" },
+--     ["<leader>w-"] = { "<C-W>s", "Vertical" },
+--     ["<leader>ww"] = { "<C-W>p", "Other window" },
+--     ["<leader>wd"] = { "<C-W>c", "Delete window" },
+
+--     -- Git
+--     ["<leader>g"] = { name = "Git" },
+
+--     -- DAP UI
+--     ["<leader>d"] = { name = "DAP" },
+--     ["<leader>dB"] = { function() require("dap").set_breakpoint(vim.fn.input('Breakpoint condition: ')) end, "Breakpoint Condition" },
+--     ["<leader>db"] = { function() require("dap").toggle_breakpoint() end, "Toggle Breakpoint" },
+--     ["<leader>dc"] = { function() require("dap").continue() end, "Continue" },
+--     ["<leader>da"] = { function() require("dap").continue({ before = get_args }) end, "Run with Args" },
+--     ["<leader>dC"] = { function() require("dap").run_to_cursor() end, "Run to Cursor" },
+--     ["<leader>dg"] = { function() require("dap").goto_() end, "Go to line (no execute)" },
+--     ["<leader>di"] = { function() require("dap").step_into() end, "Step Into" },
+--     ["<leader>dj"] = { function() require("dap").down() end, "Down" },
+--     ["<leader>dk"] = { function() require("dap").up() end, "Up" },
+--     ["<leader>dl"] = { function() require("dap").run_last() end, "Run Last" },
+--     ["<leader>do"] = { function() require("dap").step_out() end, "Step Out" },
+--     ["<leader>dO"] = { function() require("dap").step_over() end, "Step Over" },
+--     ["<leader>dp"] = { function() require("dap").pause() end, "Pause" },
+--     ["<leader>dr"] = { function() require("dap").repl.toggle() end, "Toggle REPL" },
+--     ["<leader>ds"] = { function() require("dap").session() end, "Session" },
+--     ["<leader>dt"] = { function() require("dap").terminate() end, "Terminate" },
+--     ["<leader>dw"] = { function() require("dap.ui.widgets").hover() end, "Widgets" },
+
+
+-- })
+wk.add({
+  -- MarkDown
+  { "<leader>.", group = "MarkDown" },
+  { "<leader>.o", "<cmd>MarkdownPreview<CR>", desc = "Open MarkDown", mode = "n" },
+  { "<leader>.c", "<cmd>MarkdownPreviewStop<CR>", desc = "Close MarkDown", mode = "n" },
+
+  -- Exit
+  { "<leader>q", "<cmd>qa<cr>", desc = "Exit", mode = "n" },
+
+  -- Cellular Automaton
+  { "<leader>c", group = "Cellular Automaton" },
+  { "<leader>cg", "<cmd>CellularAutomaton game_of_life<CR>", desc = "game_of_life", mode = "n" },
+  { "<leader>cm", "<cmd>CellularAutomaton make_it_rain<CR>", desc = "make_it_rain", mode = "n" },
+  { "<leader>cs", "<cmd>CellularAutomaton scramble<CR>", desc = "scramble", mode = "n" },
+
+  -- Bufferline
+  { "<leader>b", group = "Bufferline" },
+  { "<leader>bc", group = "Close" },
+  { "<leader>bcl", "<cmd>BufferLineCloseLeft<CR>", desc = "Left", mode = "n" },
+  { "<leader>bco", "<cmd>BufferLineCloseOthers<CR>", desc = "Others", mode = "n" },
+  { "<leader>bcr", "<cmd>BufferLineCloseRight<CR>", desc = "Right", mode = "n" },
+  { "<leader>by", group = "Cycle" },
+  { "<leader>byn", "<cmd>BufferLineCycleNext<CR>", desc = "Next", mode = "n" },
+  { "<leader>byp", "<cmd>BufferLineCyclePrev<CR>", desc = "Prev", mode = "n" },
+  { "<leader>bg", group = "Group" },
+  { "<leader>bgc", "<cmd>BufferLineGroupClose<CR>", desc = "Close", mode = "n" },
+  { "<leader>bgt", "<cmd>BufferLineGroupToggle<CR>", desc = "Toggle", mode = "n" },
+  { "<leader>bm", group = "Move" },
+  { "<leader>bmn", "<cmd>BufferLineMoveNext<CR>", desc = "Next", mode = "n" },
+  { "<leader>bmp", "<cmd>BufferLineMovePrev<CR>", desc = "Prev", mode = "n" },
+  { "<leader>bp", "<cmd>BufferLinePick<CR>", desc = "Pick", mode = "n" },
+  { "<leader>bP", "<cmd>BufferLinePickClose<CR>", desc = "Pick Close", mode = "n" },
+  { "<leader>bs", group = "SortBy" },
+  { "<leader>bsd", "<cmd>BufferLineSortByDirectory<CR>", desc = "Directory", mode = "n" },
+  { "<leader>bse", "<cmd>BufferLineSortByExtension<CR>", desc = "Extension", mode = "n" },
+  { "<leader>bsr", "<cmd>BufferLineSortByRelativeDirectory<CR>", desc = "RelativeDirectory", mode = "n" },
+  { "<leader>bst", "<cmd>BufferLineSortByTabs<CR>", desc = "Tabs", mode = "n" },
+  { "<leader>bt", "<cmd>BufferLineTogglePin<CR>", desc = "Toggle Pin", mode = "n" },
+
+  -- Split windows
+  { "<leader>w", group = "Window" },
+  { "<leader>w|", "<C-W>v", desc = "Horizontal", mode = "n" },
+  { "<leader>w-", "<C-W>s", desc = "Vertical", mode = "n" },
+  { "<leader>ww", "<C-W>p", desc = "Other window", mode = "n" },
+  { "<leader>wd", "<C-W>c", desc = "Delete window", mode = "n" },
+
+  -- Git
+  { "<leader>g", group = "Git" },
+
+  -- DAP UI
+  { "<leader>d", group = "DAP" },
+  { "<leader>dB", function() require("dap").set_breakpoint(vim.fn.input('Breakpoint condition: ')) end, desc = "Breakpoint Condition", mode = "n" },
+  { "<leader>db", function() require("dap").toggle_breakpoint() end, desc = "Toggle Breakpoint", mode = "n" },
+  { "<leader>dc", function() require("dap").continue() end, desc = "Continue", mode = "n" },
+  { "<leader>da", function() require("dap").continue({ before = get_args }) end, desc = "Run with Args", mode = "n" },
+  { "<leader>dC", function() require("dap").run_to_cursor() end, desc = "Run to Cursor", mode = "n" },
+  { "<leader>dg", function() require("dap").goto_() end, desc = "Go to line (no execute)", mode = "n" },
+  { "<leader>di", function() require("dap").step_into() end, desc = "Step Into", mode = "n" },
+  { "<leader>dj", function() require("dap").down() end, desc = "Down", mode = "n" },
+  { "<leader>dk", function() require("dap").up() end, desc = "Up", mode = "n" },
+  { "<leader>dl", function() require("dap").run_last() end, desc = "Run Last", mode = "n" },
+  { "<leader>do", function() require("dap").step_out() end, desc = "Step Out", mode = "n" },
+  { "<leader>dO", function() require("dap").step_over() end, desc = "Step Over", mode = "n" },
+  { "<leader>dp", function() require("dap").pause() end, desc = "Pause", mode = "n" },
+  { "<leader>dr", function() require("dap").repl.toggle() end, desc = "Toggle REPL", mode = "n" },
+  { "<leader>ds", function() require("dap").session() end, desc = "Session", mode = "n" },
+  { "<leader>dt", function() require("dap").terminate() end, desc = "Terminate", mode = "n" },
+  { "<leader>dw", function() require("dap.ui.widgets").hover() end, desc = "Widgets", mode = "n" },
+
+  -- Lsp Config
+  { "<leader>l", desc = "Lsp Config", mode = "n" },
+
+  -- TreeSJ Toggle
+  { "<leader>m", "<cmd>TSJToggle<CR>", desc = "TreeSJ Toggle", mode = "n" },
 })
 

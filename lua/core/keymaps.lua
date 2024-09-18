@@ -16,7 +16,7 @@ vim.opt.expandtab = true
 vim.opt.showbreak = "↪ "
 vim.cmd('set number')
 vim.cmd('set relativenumber')
-vim.cmd('set cmdheight=0')
+-- vim.cmd('set cmdheight=0')
 
 -- Change the highlight LinerNr
 -- vim.cmd([[highlight LineNr guifg='#F9E2AF']])
