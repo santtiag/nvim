@@ -23,6 +23,7 @@ require('core.plugin_config.smooth-cursor')
 require('core.plugin_config.trouble')
 require('core.plugin_config.bigfile')
 require('core.plugin_config.dap')
+require('core.plugin_config.breadcrumbs')
 
 -- INFO: Themes
 require('core.plugin_config.themes.catppuccin')
