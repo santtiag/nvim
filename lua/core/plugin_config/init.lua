@@ -19,11 +19,11 @@ require('core.plugin_config.neo-tree')
 require('core.plugin_config.colorizer')
 require('core.plugin_config.indent-blankline')
 require('core.plugin_config.gitsign')
-require('core.plugin_config.smooth-cursor')
 require('core.plugin_config.trouble')
 require('core.plugin_config.bigfile')
 require('core.plugin_config.dap')
 require('core.plugin_config.breadcrumbs')
+require('core.plugin_config.supermaven')
 
 -- INFO: Themes
 require('core.plugin_config.themes.catppuccin')

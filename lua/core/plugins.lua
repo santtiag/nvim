@@ -249,11 +249,6 @@ require('lazy').setup({
         end,
     },
 
-    -- SmoothCursor
-    {
-        'gen740/SmoothCursor.nvim',
-    },
-
     -- BigFile
     "LunarVim/bigfile.nvim",
 
@@ -313,5 +308,9 @@ require('lazy').setup({
         opts = {
             -- configurations go here
         },
+    },
+    -- AI-SUGGESTION -> SuperMaven
+    {
+        "supermaven-inc/supermaven-nvim",
     },
 })

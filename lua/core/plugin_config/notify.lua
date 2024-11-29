@@ -1,6 +1,6 @@
 require("notify").setup({
     background_colour = "#000000",
-    fps = 30,
+    fps = 60,
     icons = {
         DEBUG = "",
         ERROR = "",
@@ -16,6 +16,6 @@ require("notify").setup({
         notification = "%T",
         notification_history = "%FT%T"
     },
-    timeout = 4000,
+    timeout = 3000,
     top_down = false
 })
