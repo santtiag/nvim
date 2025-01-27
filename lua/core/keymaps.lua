@@ -14,6 +14,7 @@ vim.opt.shiftwidth = 4
 vim.opt.shiftround = true
 vim.opt.expandtab = true
 vim.opt.showbreak = "↪ "
+vim.opt.clipboard = 'unnamedplus'
 vim.cmd('set number')
 vim.cmd('set relativenumber')
 -- vim.cmd('set cmdheight=0')
@@ -28,6 +29,12 @@ function CloseTab()
     vim.cmd(':bdelete')
     vim.cmd(':bfirst')
 end
+
+-- copy
+vim.api.nvim_set_keymap('v', '<C-c>', '"+y', { noremap = true, silent = true })
+-- paste
+vim.api.nvim_set_keymap('v', '<C-v>', '"+p', { noremap = true, silent = true })
+
 
 -- Close Tab
 vim.api.nvim_set_keymap('n', '<C-w>', '<cmd>lua CloseTab()<CR>', { noremap = true, silent = true })

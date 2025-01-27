@@ -70,7 +70,6 @@ require('lazy').setup({
         version = "*",
         dependencies = 'nvim-tree/nvim-web-devicons'
     },
-    'terrortylor/nvim-comment',
     {
         'nvim-telescope/telescope.nvim',
         version = '0.1.5',
@@ -127,12 +126,6 @@ require('lazy').setup({
     },
 
     'onsails/lspkind-nvim',
-
-    -- Trouble
-    {
-        "folke/trouble.nvim",
-        dependencies = { "nvim-tree/nvim-web-devicons" },
-    },
 
     -- Notify
     'rcarriga/nvim-notify',
@@ -215,9 +208,6 @@ require('lazy').setup({
         end
     },
 
-    -- The best plugin ever
-    'eandrju/cellular-automaton.nvim',
-
     -- flash
     {
         "folke/flash.nvim",
@@ -236,21 +226,6 @@ require('lazy').setup({
 
     -- gitSign
     "lewis6991/gitsigns.nvim",
-
-    -- treeSJ
-    {
-        'Wansmer/treesj',
-        dependencies = { 'nvim-treesitter/nvim-treesitter' },
-        config = function()
-            require('treesj').setup({
-                use_default_keymaps = false,
-                --[[ your config ]]
-            })
-        end,
-    },
-
-    -- BigFile
-    "LunarVim/bigfile.nvim",
 
     'mfussenegger/nvim-dap',
 
