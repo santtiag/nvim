@@ -2,18 +2,6 @@ require('lazy').setup({
     -- Plenary
     "nvim-lua/plenary.nvim",
 
-    -- NeoTree
-    {
-        "nvim-neo-tree/neo-tree.nvim",
-        branch = "v3.x",
-        dependencies = {
-            "nvim-lua/plenary.nvim",
-            "nvim-tree/nvim-web-devicons", -- not strictly required, but recommended
-            "MunifTanjim/nui.nvim",
-            -- "3rd/image.nvim", -- Optional image support in preview window: See `# Preview Mode` for more information
-        }
-    },
-
     'nvim-tree/nvim-web-devicons',
     'nvim-lualine/lualine.nvim',
 
@@ -65,58 +53,35 @@ require('lazy').setup({
         build = "make install_jsregexp"
     },
     "rafamadriz/friendly-snippets",
-    {
-        'akinsho/bufferline.nvim',
-        version = "*",
-        dependencies = 'nvim-tree/nvim-web-devicons'
-    },
+
+    -- Telescope
     {
         'nvim-telescope/telescope.nvim',
         version = '0.1.5',
         dependencies = { 'nvim-lua/plenary.nvim' }
     },
 
+    -- Mardown Render
     {
-        "iamcco/markdown-preview.nvim",
-        cmd = { "MarkdownPreviewToggle", "MarkdownPreview", "MarkdownPreviewStop" },
-        ft = { "markdown" },
-        build = function() vim.fn["mkdp#util#install"]() end,
+        'MeanderingProgrammer/render-markdown.nvim',
+        dependencies = { 'nvim-treesitter/nvim-treesitter', 'echasnovski/mini.nvim' }, -- if you use the mini.nvim suite
+        -- dependencies = { 'nvim-treesitter/nvim-treesitter', 'echasnovski/mini.icons' }, -- if you use standalone mini plugins
+        -- dependencies = { 'nvim-treesitter/nvim-treesitter', 'nvim-tree/nvim-web-devicons' }, -- if you prefer nvim-web-devicons
+        ---@module 'render-markdown'
+        ---@type render.md.UserConfig
+        opts = {},
     },
 
+    -- Alpha
     {
         'goolord/alpha-nvim',
+        dependencies = { 'echasnovski/mini.icons' },
         config = function()
-            local alpha = require 'alpha'
-            local dashboard = require 'alpha.themes.dashboard'
-            dashboard.section.header.val = {
-                [[  ██╗ ██╗    ███████╗ █████╗ ███╗   ██╗████████╗████████╗██╗ █████╗  ██████╗     ██╗ ██╗  ]],
-                [[ ██╔╝██╔╝    ██╔════╝██╔══██╗████╗  ██║╚══██╔══╝╚══██╔══╝██║██╔══██╗██╔════╝     ╚██╗╚██╗ ]],
-                [[██╔╝██╔╝     ███████╗███████║██╔██╗ ██║   ██║      ██║   ██║███████║██║  ███╗     ╚██╗╚██╗]],
-                [[╚██╗╚██╗     ╚════██║██╔══██║██║╚██╗██║   ██║      ██║   ██║██╔══██║██║   ██║     ██╔╝██╔╝]],
-                [[ ╚██╗╚██╗    ███████║██║  ██║██║ ╚████║   ██║      ██║   ██║██║  ██║╚██████╔╝    ██╔╝██╔╝ ]],
-                [[  ╚═╝ ╚═╝    ╚══════╝╚═╝  ╚═╝╚═╝  ╚═══╝   ╚═╝      ╚═╝   ╚═╝╚═╝  ╚═╝ ╚═════╝     ╚═╝ ╚═╝  ]],
-
-            }
-            dashboard.section.buttons.val = {
-                dashboard.button("e", "  New file", ":ene <BAR> startinsert <CR>"),
-                dashboard.button("SPC f f", "󰈞  Find File", ":Telescope fd<CR>"),
-                dashboard.button("SPC f r", "󰈢  Recently Opened Files", ":Telescope oldfiles<CR>"),
-                dashboard.button("SPC f g", "󰷊  Find Word", ":Telescope live_grep<CR>"),
-                dashboard.button("SPC f h", "󰡯  Help Tags", ":Telescope help_tags<CR>"),
-                dashboard.button("q", "󰅚  Quit", ":qa<CR>"),
-            }
-            -- local handle = io.popen('fortune')
-            -- local fortune = handle:read("*a")
-            -- handle:close()
-            -- dashboard.section.footer.val = fortune
-
-            dashboard.config.opts.noautocmd = true
-            -- Print a message
-            -- vim.cmd [[autocmd User AlphaReady echo 'ready']]
-
-            alpha.setup(dashboard.config)
+            require 'core.plugin_config.alpha'
         end
     },
+
+    -- Which-key
     {
         "folke/which-key.nvim",
         config = function()
@@ -132,6 +97,7 @@ require('lazy').setup({
 
     -- Nui
     'MunifTanjim/nui.nvim',
+
     -- Cmd Noice
     {
         "folke/noice.nvim",
@@ -169,7 +135,6 @@ require('lazy').setup({
                     "help",
                     "alpha",
                     "dashboard",
-                    "neo-tree",
                     "Trouble",
                     "trouble",
                     "lazy",
@@ -185,19 +150,16 @@ require('lazy').setup({
         end,
 
     },
-    {
-        'echasnovski/mini.indentscope', version = '*'
-    },
 
-    -- colorizer - NvChad
+    -- Colorizer - NvChad
     'NvChad/nvim-colorizer.lua',
 
-    -- indent-blankline
+    -- Indent-blankline
     {
         "lukas-reineke/indent-blankline.nvim", main = "ibl", opts = {}
     },
 
-    -- tailwind-colorizer
+    -- Tailwind-colorizer
     {
         "roobert/tailwindcss-colorizer-cmp.nvim",
         -- optionally, override the default options:
@@ -208,7 +170,7 @@ require('lazy').setup({
         end
     },
 
-    -- flash
+    -- Flash
     {
         "folke/flash.nvim",
         event = "VeryLazy",
@@ -216,20 +178,43 @@ require('lazy').setup({
         opts = {},
         -- stylua: ignore
         keys = {
-            { "s",     mode = { "n", "x", "o" }, function() require("flash").jump() end,              desc = "Flash" },
-            { "S",     mode = { "n", "x", "o" }, function() require("flash").treesitter() end,        desc = "Flash Treesitter" },
-            { "r",     mode = "o",               function() require("flash").remote() end,            desc = "Remote Flash" },
-            { "R",     mode = { "o", "x" },      function() require("flash").treesitter_search() end, desc = "Treesitter Search" },
-            { "<c-s>", mode = { "c" },           function() require("flash").toggle() end,            desc = "Toggle Flash Search" },
+            { "s", mode = { "n", "x", "o" }, function() require("flash").jump() end,       desc = "Flash" },
+            { "S", mode = { "n", "x", "o" }, function() require("flash").treesitter() end, desc = "Flash Treesitter" },
+            -- { "r",     mode = "o",               function() require("flash").remote() end,            desc = "Remote Flash" },
+            -- { "R",     mode = { "o", "x" },      function() require("flash").treesitter_search() end, desc = "Treesitter Search" },
+            -- { "<c-s>", mode = { "c" },           function() require("flash").toggle() end,            desc = "Toggle Flash Search" },
         },
     },
 
-    -- gitSign
+    -- GitSign
     "lewis6991/gitsigns.nvim",
+
+    -- Lazy Git
+    {
+        "kdheepak/lazygit.nvim",
+        lazy = true,
+        cmd = {
+            "LazyGit",
+            "LazyGitConfig",
+            "LazyGitCurrentFile",
+            "LazyGitFilter",
+            "LazyGitFilterCurrentFile",
+        },
+        -- optional for floating window border decoration
+        dependencies = {
+            "nvim-lua/plenary.nvim",
+        },
+        -- setting the keybinding for LazyGit with 'keys' is recommended in
+        -- order to load the plugin when the command is run for the first time
+        keys = {
+            { "<leader>G", "<cmd>LazyGit<cr>", desc = "LazyGit" }
+        }
+    },
 
     'mfussenegger/nvim-dap',
 
-    -- fancy UI for the debugger
+
+    -- Fancy UI for the debugger
     {
         "rcarriga/nvim-dap-ui",
         -- stylua: ignore
@@ -256,11 +241,13 @@ require('lazy').setup({
         end,
     },
 
-    -- virtual text for the debugger
+    -- Virtual text for the debugger
     {
         "theHamsta/nvim-dap-virtual-text",
         opts = {},
     },
+
+    -- Todo Comments
     {
         "folke/todo-comments.nvim",
         dependencies = { "nvim-lua/plenary.nvim" },
@@ -284,8 +271,51 @@ require('lazy').setup({
             -- configurations go here
         },
     },
-    -- AI-SUGGESTION -> SuperMaven
+
+    -- SuperMaven
     {
         "supermaven-inc/supermaven-nvim",
     },
+
+    -- Oil
+    {
+        'stevearc/oil.nvim',
+        ---@module 'oil'
+        ---@type oil.SetupOpts
+        opts = {},
+        dependencies = { { "echasnovski/mini.icons", opts = {} } },
+        lazy = false,
+    },
+
+    -- Twilight Nvim
+    {
+        "folke/twilight.nvim",
+        opts = {
+        }
+    },
+
+    -- Rip Substitute
+    {
+        "chrisgrieser/nvim-rip-substitute",
+        cmd = "RipSubstitute",
+        opts = {},
+        keys = {
+            {
+                "<leader>fs",
+                function() require("rip-substitute").sub() end,
+                mode = { "n", "x" },
+                desc = " rip substitute",
+            },
+        },
+    },
+
+    -- Goto
+    {
+        "rmagatti/goto-preview",
+        event = "BufEnter",
+        config = true, -- necessary as per https://github.com/rmagatti/goto-preview/issues/88
+    },
+
+
+
 })

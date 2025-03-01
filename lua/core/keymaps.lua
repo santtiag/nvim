@@ -13,6 +13,15 @@ vim.opt.tabstop = 4
 vim.opt.shiftwidth = 4
 vim.opt.shiftround = true
 vim.opt.expandtab = true
+vim.o.softtabstop = 4
+
+-- new options
+-- vim.o.autoindent = true  -- Activa la indentación automática
+-- vim.o.smartindent = true  -- Activar indentación inteligente
+-- vim.o.smarttab = true  -- Activa la indentación inteligente para el tabulador
+-- vim.o.expandtab = true  -- Convierte las tabulaciones en espacios
+-- vim.o.visualbell = true  -- Desactiva los sonidos y usa una alerta visual
+
 vim.opt.showbreak = "↪ "
 vim.opt.clipboard = 'unnamedplus'
 vim.cmd('set number')
@@ -22,32 +31,18 @@ vim.cmd('set relativenumber')
 -- Change the highlight LinerNr
 -- vim.cmd([[highlight LineNr guifg='#F9E2AF']])
 
-vim.keymap.set('n', '<leader>h', ':nohlsearch<CR>')
--- Mapea una tecla, por ejemplo <leader>v, para abrir una pestaña vertical
-
-function CloseTab()
-    vim.cmd(':bdelete')
-    vim.cmd(':bfirst')
-end
+-- vim.keymap.set('n', '<leader>h', ':nohlsearch<CR>')
 
 -- copy
 vim.api.nvim_set_keymap('v', '<C-c>', '"+y', { noremap = true, silent = true })
 -- paste
 vim.api.nvim_set_keymap('v', '<C-v>', '"+p', { noremap = true, silent = true })
 
-
--- Close Tab
-vim.api.nvim_set_keymap('n', '<C-w>', '<cmd>lua CloseTab()<CR>', { noremap = true, silent = true })
-
 -- Exit
 vim.api.nvim_set_keymap('n', '<C-q>', ':q<CR>', { noremap = true, silent = true })
 
 -- Save
 vim.api.nvim_set_keymap('n', '<C-s>', ':w<CR>', { noremap = true, silent = true })
-
--- Change Tabs
-vim.api.nvim_set_keymap('n', 'L', ':BufferLineCycleNext<CR>', { noremap = true, silent = true })
-vim.api.nvim_set_keymap('n', 'H', ':BufferLineCyclePrev<CR>', { noremap = true, silent = true })
 
 -- Change to windows
 vim.api.nvim_set_keymap('n', '<C-h>', '<C-w>h', { noremap = true, silent = true, desc = 'Go to left window' })

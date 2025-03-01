@@ -38,16 +38,15 @@ require('lspconfig').cssls.setup({
 require('lspconfig').html.setup({
     capabilities = capabilities,
 })
-require 'lspconfig'.lua_ls.setup {}
-require 'lspconfig'.rust_analyzer.setup {
-    settings = {
-        ['rust-analyzer'] = {
-            diagnostics = {
-                enable = true,
-            }
-        }
-    }
-}
+-- require 'lspconfig'.rust_analyzer.setup {
+--     settings = {
+--         ['rust-analyzer'] = {
+--             diagnostics = {
+--                 enable = true,
+--             }
+--         }
+--     }
+-- }
 -- Others...
 
 -- INFO: --Edn--

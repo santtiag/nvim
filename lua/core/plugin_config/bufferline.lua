@@ -1,8 +1,8 @@
-vim.opt.termguicolors = true
 local bufferline = require('bufferline')
 
 bufferline.setup {
     options = {
+        always_show_bufferline = false,
         style_preset = bufferline.style_preset.minimal,
         hover = {
             enabled = true,
@@ -56,6 +56,6 @@ bufferline.setup {
             local icon = level:match("error") and "" or ""
             return icon .. count
         end,
+        show_tab_indicators = false
     }
 }
-
