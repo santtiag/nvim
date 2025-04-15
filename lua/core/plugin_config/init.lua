@@ -19,7 +19,6 @@ require('core.plugin_config.gitsign')
 require('core.plugin_config.alpha')
 require('core.plugin_config.dap')
 require('core.plugin_config.breadcrumbs')
-require('core.plugin_config.supermaven')
 require('core.plugin_config.oil')
 require('core.plugin_config.rip-substitute')
 

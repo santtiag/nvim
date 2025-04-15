@@ -81,21 +81,9 @@ wk.add({
     -- Twilight mode 
     { "<leader>mt", function() require("twilight").toggle() end, desc = "Twilight", mode = "n" },
 
-    -- Render Markdown
+    -- Markdown Preview
     { "<leader>r",  group = "Render Markdown" },
-    { "<leader>rt", function() require("render-markdown").toggle() end, desc = "Toggle", mode = "n" },
-    { "<leader>rb",  group = "Buffers" },
-    { "<leader>rbd", function() require("render-markdown").buf_disable() end, desc = "Buffer Disable", mode = "n" },
-    { "<leader>rbe", function() require("render-markdown").buf_enable() end, desc = "Buffer Enable", mode = "n" },
-    { "<leader>rbt", function() require("render-markdown").buf_toggle() end, desc = "Buffer Toggle", mode = "n" },
-    { "<leader>rc", function() require("render-markdown").config() end, desc = "Default Config", mode = "n" },
-    { "<leader>ro", function() require("render-markdown").contract() end, desc = "Contract", mode = "n" },
-    { "<leader>rd", function() require("render-markdown").debug() end, desc = "Debug", mode = "n" },
-    { "<leader>re", function() require("render-markdown").enable() end, desc = "Enable", mode = "n" },
-    { "<leader>ri", function() require("render-markdown").disable() end, desc = "Disable", mode = "n" },
-    { "<leader>rl", function() require("render-markdown").log() end, desc = "Log", mode = "n" },
-    { "<leader>rx", function() require("render-markdown").expand() end, desc = "Expand", mode = "n" },
-    
+    { "<leader>mm", "<CMD>MarkdownPreviewToggle<CR>", desc = "Markdown", mode = "n" },
 
     -- Goto
    { "<leader>g",  group = "Goto" },

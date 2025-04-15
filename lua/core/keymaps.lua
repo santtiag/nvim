@@ -24,9 +24,11 @@ vim.o.softtabstop = 4
 
 vim.opt.showbreak = "↪ "
 vim.opt.clipboard = 'unnamedplus'
-vim.cmd('set number')
-vim.cmd('set relativenumber')
+-- vim.cmd('set number')
+-- vim.cmd('set relativenumber')
 -- vim.cmd('set cmdheight=0')
+vim.opt.relativenumber = true
+vim.opt.number = true
 
 -- Change the highlight LinerNr
 -- vim.cmd([[highlight LineNr guifg='#F9E2AF']])

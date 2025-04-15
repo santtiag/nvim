@@ -91,6 +91,10 @@ local config = {
             normal = { c = { fg = colors.fg, bg = colors.bg } },
             inactive = { c = { fg = colors.fg, bg = colors.bg } },
         },
+        disabled_filetypes = {
+            -- statusline = { 'oil','AvanteInput', 'Avante', 'AvanteSelectedFiles'},
+            winbar = {},
+        },
     },
     sections = {
         -- these are to remove the defaults
