@@ -4,7 +4,7 @@ require('lazy').setup({
 
     'nvim-tree/nvim-web-devicons',
     'nvim-lualine/lualine.nvim',
-    
+
 
     -- INFO: THEMES --Start--
 
@@ -58,7 +58,7 @@ require('lazy').setup({
     -- Telescope
     {
         'nvim-telescope/telescope.nvim',
-        version = '0.1.5',
+        tag = '0.1.8',
         dependencies = { 'nvim-lua/plenary.nvim' }
     },
 
@@ -77,10 +77,15 @@ require('lazy').setup({
     -- Alpha
     {
         'goolord/alpha-nvim',
-        dependencies = { 'echasnovski/mini.icons' },
+        -- dependencies = { 'echasnovski/mini.icons' },
+        dependencies = { 'nvim-tree/nvim-web-devicons' },
         config = function()
-            require 'core.plugin_config.alpha'
-        end
+            local startify = require("alpha.themes.startify")
+            startify.file_icons.provider = "devicons"
+            require("alpha").setup(
+                startify.config
+            )
+        end,
     },
 
     -- Which-key
@@ -311,5 +316,45 @@ require('lazy').setup({
         "rmagatti/goto-preview",
         event = "BufEnter",
         config = true, -- necessary as per https://github.com/rmagatti/goto-preview/issues/88
+    },
+
+    -- Avante
+    {
+        "yetone/avante.nvim",
+        event = "VeryLazy",
+        version = false, -- Never set this value to "*"! Never!
+        opts = {
+            provider = "openai",
+            openai = {
+                api_key_name = "CEREBRAS_API_KEY",                           -- Nombre de la variable de entorno para la clave API
+                -- endpoint = "https://api.groq.com/openai/v1/",            -- Endpoint de la API de Groq
+                endpoint = "https://api.groq.com/openai/v1/",                -- Endpoint de API de Cerebras
+                model = "llama-4-scout-17b-16e-instruct", -- Modelo
+            }
+
+        },
+        -- if you want to build from source then do `make BUILD_FROM_SOURCE=true`
+        build = "make",
+        -- build = "powershell -ExecutionPolicy Bypass -File Build.ps1 -BuildFromSource false" -- for windows
+        dependencies = {
+            "nvim-treesitter/nvim-treesitter",
+            "stevearc/dressing.nvim",
+            "nvim-lua/plenary.nvim",
+            "MunifTanjim/nui.nvim",
+            --- The below dependencies are optional,
+            "echasnovski/mini.pick",         -- for file_selector provider mini.pick
+            "nvim-telescope/telescope.nvim", -- for file_selector provider telescope
+            "hrsh7th/nvim-cmp",              -- autocompletion for avante commands and mentions
+            "ibhagwan/fzf-lua",              -- for file_selector provider fzf
+            "nvim-tree/nvim-web-devicons",   -- or echasnovski/mini.icons
+            {
+                -- Make sure to set this up properly if you have lazy=true
+                'MeanderingProgrammer/render-markdown.nvim',
+                opts = {
+                    file_types = { "markdown", "Avante" },
+                },
+                ft = { "markdown", "Avante" },
+            },
+        },
     },
 })

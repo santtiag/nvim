@@ -92,7 +92,7 @@ local config = {
             inactive = { c = { fg = colors.fg, bg = colors.bg } },
         },
         disabled_filetypes = {
-            -- statusline = { 'oil','AvanteInput', 'Avante', 'AvanteSelectedFiles'},
+            statusline = { 'oil','AvanteInput', 'Avante', 'AvanteSelectedFiles'},
             winbar = {},
         },
     },

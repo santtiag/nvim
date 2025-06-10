@@ -15,38 +15,12 @@ lsp_defaults.capabilities = vim.tbl_extend(
 )
 
 -- INFO: Lsp --Start--
-require("lspconfig").lua_ls.setup {
-    settings = {
-        Lua = {
-            diagnostics = {
-                globals = { "vim" },
-            },
-            workspace = {
-                library = {
-                    [vim.fn.expand "$VIMRUNTIME/lua"] = true,
-                    [vim.fn.stdpath "config" .. "/lua"] = true,
-                },
-            },
-        },
-    }
-}
-require('lspconfig').ts_ls.setup({})
-require('lspconfig').pyright.setup({})
-require('lspconfig').cssls.setup({
-    capabilities = capabilities
-})
-require('lspconfig').html.setup({
-    capabilities = capabilities,
-})
--- require 'lspconfig'.rust_analyzer.setup {
---     settings = {
---         ['rust-analyzer'] = {
---             diagnostics = {
---                 enable = true,
---             }
---         }
---     }
--- }
+vim.lsp.enable('lua_ls')
+vim.lsp.enable('ts_ls')
+vim.lsp.enable('pyright')
+vim.lsp.enable('cssls')
+vim.lsp.enable('html')
+vim.lsp.enable('gopls')
 -- Others...
 
 -- INFO: --Edn--
@@ -85,12 +59,25 @@ vim.api.nvim_create_autocmd('LspAttach', {
     end,
 })
 
-vim.fn.sign_define('DiagnosticSignError', { text = '', texthl = 'DiagnosticSignError' })
-vim.fn.sign_define('DiagnosticSignWarn', { text = '', texthl = 'DiagnosticSignWarn' })
-vim.fn.sign_define('DiagnosticSignInfo', { text = '', texthl = 'DiagnosticSignInfo' })
-vim.fn.sign_define('DiagnosticSignHint', { text = '', texthl = 'DiagnosticSignHint' })
 vim.diagnostic.config({
     virtual_text = {
         prefix = '●',
-    }
+    },
+    signs = true,
+    update_in_insert = false,
+    severity_sort = true,
+    float = {
+        focusable = false,
+        style = 'minimal',
+        border = 'rounded',
+        source = 'always',
+        header = '',
+        prefix = '',
+    },
+    signs = {
+        { name = 'DiagnosticSignError', text = '' },
+        { name = 'DiagnosticSignWarn', text = '' },
+        { name = 'DiagnosticSignInfo', text = '' },
+        { name = 'DiagnosticSignHint', text = '' },
+    },
 })
