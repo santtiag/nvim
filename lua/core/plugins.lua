@@ -1,59 +1,42 @@
 require('lazy').setup({
-    -- Plenary
-    "nvim-lua/plenary.nvim",
+    'nvim-lua/plenary.nvim', -- plenary
+
+    'ThePrimeagen/harpoon', -- harpoon
 
     'nvim-tree/nvim-web-devicons',
-    'nvim-lualine/lualine.nvim',
 
 
-    -- INFO: THEMES --Start--
-
-    -- catppuccin
-    {
-        "catppuccin/nvim",
-        name = "catppuccin",
-        priority = 1000,
-        opts = {}
-    },
-    -- gruvbox
-    {
-        "ellisonleao/gruvbox.nvim",
-        priority = 1000,
-        config = true,
-        opts = {}
-    },
-    -- tokyo-ngight
-    {
-        "folke/tokyonight.nvim",
-        lazy = false,
-        priority = 1000,
-        opts = {},
-    },
-    -- INFO: --End--
-
-    {
-        "williamboman/mason.nvim",
-        "williamboman/mason-lspconfig.nvim",
-        "neovim/nvim-lspconfig",
-    },
-    'nvim-treesitter/nvim-treesitter',
-
-    -- cmp
-    'hrsh7th/nvim-cmp',
+    -- config
+    'neovim/nvim-lspconfig',
+    'williamboman/mason.nvim',
+    'williamboman/mason-lspconfig.nvim',
     'hrsh7th/cmp-nvim-lsp',
-    'hrsh7th/cmp-path',
     'hrsh7th/cmp-buffer',
+    'hrsh7th/cmp-path',
     'hrsh7th/cmp-cmdline',
+    'hrsh7th/nvim-cmp',
+
+    -- snippets
+    {
+        "L3MON4D3/LuaSnip", version = "v2.*", build = "make install_jsregexp"
+    },
     'saadparwaiz1/cmp_luasnip',
+    'rafamadriz/friendly-snippets',
+    'onsails/lspkind-nvim', -- icons
 
     {
-        "L3MON4D3/LuaSnip",
-        -- follow latest release.
-        version = "v2.*", -- Replace <CurrentMajor> by the latest released major (first number of latest release)
-        -- install jsregexp (optional!).
-        build = "make install_jsregexp"
+        'nvim-lualine/lualine.nvim',
+        dependencies = {
+            'nvim-tree/nvim-web-devicons',
+        }
     },
-    "rafamadriz/friendly-snippets",
+
+    -- NOTE: ---THEMES ---
+    { "catppuccin/nvim", name = "catppuccin", priority = 1000, opts = {} }, -- catppuccin
+    { "ellisonleao/gruvbox.nvim", priority = 1000, config = true, opts = {} }, -- gruvbox
+    { "folke/tokyonight.nvim", lazy = false, priority = 1000, opts = {} }, -- tokyo-ngight
+
+    'nvim-treesitter/nvim-treesitter',
 
     -- Telescope
     {
@@ -72,7 +55,6 @@ require('lazy').setup({
         end,
         ft = { "markdown" },
     },
-
 
     -- Alpha
     {
@@ -93,11 +75,9 @@ require('lazy').setup({
         "folke/which-key.nvim",
         config = function()
             vim.o.timeout = true
-            vim.o.timeoutlen = 300
+            vim.o.timeoutlen = 250
         end
     },
-
-    'onsails/lspkind-nvim',
 
     -- Notify
     'rcarriga/nvim-notify',
@@ -301,14 +281,6 @@ require('lazy').setup({
         "chrisgrieser/nvim-rip-substitute",
         cmd = "RipSubstitute",
         opts = {},
-        keys = {
-            {
-                "<leader>fs",
-                function() require("rip-substitute").sub() end,
-                mode = { "n", "x" },
-                desc = " rip substitute",
-            },
-        },
     },
 
     -- Goto
@@ -324,14 +296,16 @@ require('lazy').setup({
         event = "VeryLazy",
         version = false, -- Never set this value to "*"! Never!
         opts = {
-            provider = "openai",
-            openai = {
-                api_key_name = "CEREBRAS_API_KEY",                           -- Nombre de la variable de entorno para la clave API
-                -- endpoint = "https://api.groq.com/openai/v1/",            -- Endpoint de la API de Groq
-                endpoint = "https://api.groq.com/openai/v1/",                -- Endpoint de API de Cerebras
-                model = "llama-4-scout-17b-16e-instruct", -- Modelo
+            provider = "groq",
+            providers = {
+                groq = {
+                    __inherited_from = 'openai',
+                    api_key_name = "GROQ_API_KEY",                -- Nombre de la variable de entorno para la clave API
+                    endpoint = "https://api.groq.com/openai/v1/", -- Endpoint de la API de Groq
+                    model = "moonshotai/kimi-k2-instruct",
+                    max_tokens = 16384,
+                }
             }
-
         },
         -- if you want to build from source then do `make BUILD_FROM_SOURCE=true`
         build = "make",
@@ -356,5 +330,12 @@ require('lazy').setup({
                 ft = { "markdown", "Avante" },
             },
         },
+    },
+
+    -- Trouble
+    {
+        "folke/trouble.nvim",
+        opts = {}, -- for default options, refer to the configuration section for custom setup.
+        cmd = "Trouble",
     },
 })
