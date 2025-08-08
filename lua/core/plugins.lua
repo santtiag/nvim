@@ -1,7 +1,7 @@
 require('lazy').setup({
     'nvim-lua/plenary.nvim', -- plenary
 
-    'ThePrimeagen/harpoon', -- harpoon
+    'ThePrimeagen/harpoon',  -- harpoon
 
     'nvim-tree/nvim-web-devicons',
 
@@ -32,9 +32,9 @@ require('lazy').setup({
     },
 
     -- NOTE: ---THEMES ---
-    { "catppuccin/nvim", name = "catppuccin", priority = 1000, opts = {} }, -- catppuccin
-    { "ellisonleao/gruvbox.nvim", priority = 1000, config = true, opts = {} }, -- gruvbox
-    { "folke/tokyonight.nvim", lazy = false, priority = 1000, opts = {} }, -- tokyo-ngight
+    { "catppuccin/nvim",          name = "catppuccin", priority = 1000, opts = {} }, -- catppuccin
+    { "ellisonleao/gruvbox.nvim", priority = 1000,     config = true,   opts = {} }, -- gruvbox
+    { "folke/tokyonight.nvim",    lazy = false,        priority = 1000, opts = {} }, -- tokyo-ngight
 
     'nvim-treesitter/nvim-treesitter',
 
@@ -98,9 +98,29 @@ require('lazy').setup({
         }
     },
 
-    -- NeoDev
+    -- lazydev
     {
-        "folke/neodev.nvim", opts = {}
+        {
+            "folke/lazydev.nvim",
+            ft = "lua", -- only load on lua files
+            opts = {
+                library = {
+                    -- See the configuration section for more details
+                    -- Load luvit types when the `vim.uv` word is found
+                    { path = "${3rd}/luv/library", words = { "vim%.uv" } },
+                },
+            },
+        },
+        { -- optional cmp completion source for require statements and module annotations
+            "hrsh7th/nvim-cmp",
+            opts = function(_, opts)
+                opts.sources = opts.sources or {}
+                table.insert(opts.sources, {
+                    name = "lazydev",
+                    group_index = 0, -- set group index to 0 to skip loading LuaLS completions
+                })
+            end,
+        },
     },
 
     -- Mini
@@ -293,23 +313,16 @@ require('lazy').setup({
     -- Avante
     {
         "yetone/avante.nvim",
+
+        build = vim.fn.has("win32") ~= 0
+            and "powershell -ExecutionPolicy Bypass -File Build.ps1 -BuildFromSource false"
+            or "make",
         event = "VeryLazy",
         version = false, -- Never set this value to "*"! Never!
-        opts = {
-            provider = "groq",
-            providers = {
-                groq = {
-                    __inherited_from = 'openai',
-                    api_key_name = "GROQ_API_KEY",                -- Nombre de la variable de entorno para la clave API
-                    endpoint = "https://api.groq.com/openai/v1/", -- Endpoint de la API de Groq
-                    model = "moonshotai/kimi-k2-instruct",
-                    max_tokens = 16384,
-                }
-            }
-        },
+
+        opts = require("core.plugin_config.avante"),
+
         -- if you want to build from source then do `make BUILD_FROM_SOURCE=true`
-        build = "make",
-        -- build = "powershell -ExecutionPolicy Bypass -File Build.ps1 -BuildFromSource false" -- for windows
         dependencies = {
             "nvim-treesitter/nvim-treesitter",
             "stevearc/dressing.nvim",
@@ -320,6 +333,8 @@ require('lazy').setup({
             "nvim-telescope/telescope.nvim", -- for file_selector provider telescope
             "hrsh7th/nvim-cmp",              -- autocompletion for avante commands and mentions
             "ibhagwan/fzf-lua",              -- for file_selector provider fzf
+            "stevearc/dressing.nvim",        -- for input provider dressing
+            "folke/snacks.nvim",             -- for input provider snacks
             "nvim-tree/nvim-web-devicons",   -- or echasnovski/mini.icons
             {
                 -- Make sure to set this up properly if you have lazy=true
