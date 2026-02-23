@@ -13,27 +13,42 @@ return {
         -- add any opts here
         -- this file can contain specific instructions for your project
         -- instructions_file = "avante.md",
-        provider = "openrouter",
+        mode = "agentic",
+        provider = "ollama",
         providers = {
-            openrouter = {
-                __inherited_from = "openai",
-                endpoint = "https://openrouter.ai/api/v1",
-                -- model = "deepseek/deepseek-v3.2",
-                model = "minimax/minimax-m2.1",
-                timeout = 40000, -- Timeout in milliseconds
-                extra_request_body = {
-                    temperature = 0.75,
-                    max_tokens = 65480,
-                },
-                api_key_name = "OPENROUTER_API_KEY"
+            -- OPENROUTER 🫚
+            -- openrouter = {
+            --     __inherited_from = "openai",
+            --     endpoint = "https://openrouter.ai/api/v1",
+            --     -- model = "deepseek/deepseek-v3.2",
+            --     model = "minimax/minimax-m2.1",
+            --     timeout = 80000, -- Timeout in milliseconds
+            --     extra_request_body = {
+            --         temperature = 0.75,
+            --         max_tokens = 100000,
+            --     },
+            --     api_key_name = "OPENROUTER_API_KEY"
+            -- },
+
+            -- OLLAMA 🦙
+            ollama = {
+                model = "minimax-m2.5:cloud",
+                is_env_set = function()
+                    return require("avante.providers.ollama").check_endpoint_alive()
+                end,
             },
         },
+        web_search_engine = {
+            provider = "tavily",
+            proxy = nil,         -- proxy support, e.g., http://127.0.0.1:7890
+        },
+
         windows = {
-            position = "right", -- the position of the sidebar
-            wrap = true,      -- similar to vim.o.wrap
-            width = 42,       -- default % based on available width
+            position = "right",   -- the position of the sidebar
+            wrap = true,          -- similar to vim.o.wrap
+            width = 42,           -- default % based on available width
             sidebar_header = {
-                enabled = true, -- true, false to enable/disable the header
+                enabled = true,   -- true, false to enable/disable the header
                 align = "center", -- left, center, right for title
                 rounded = true,
             },
