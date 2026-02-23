@@ -31,6 +31,13 @@ require('lazy').setup({
         }
     },
 
+    {
+        "ibhagwan/fzf-lua",
+        -- optional for icon support
+        dependencies = { "nvim-tree/nvim-web-devicons" },
+        opts = {}
+    },
+
     -- NOTE: ---THEMES ---
     { "catppuccin/nvim",          name = "catppuccin", priority = 1000, opts = {} }, -- catppuccin
     { "ellisonleao/gruvbox.nvim", priority = 1000,     config = true,   opts = {} }, -- gruvbox
@@ -218,42 +225,6 @@ require('lazy').setup({
         }
     },
 
-    'mfussenegger/nvim-dap',
-
-
-    -- Fancy UI for the debugger
-    {
-        "rcarriga/nvim-dap-ui",
-        -- stylua: ignore
-        keys = {
-            { "<leader>du", function() require("dapui").toggle({}) end, desc = "Dap UI" },
-            { "<leader>de", function() require("dapui").eval() end,     desc = "Eval",  mode = { "n", "v" } },
-        },
-        opts = {},
-        config = function(_, opts)
-            -- setup dap config by VsCode launch.json file
-            -- require("dap.ext.vscode").load_launchjs()
-            local dap = require("dap")
-            local dapui = require("dapui")
-            dapui.setup(opts)
-            dap.listeners.after.event_initialized["dapui_config"] = function()
-                dapui.open({})
-            end
-            dap.listeners.before.event_terminated["dapui_config"] = function()
-                dapui.close({})
-            end
-            dap.listeners.before.event_exited["dapui_config"] = function()
-                dapui.close({})
-            end
-        end,
-    },
-
-    -- Virtual text for the debugger
-    {
-        "theHamsta/nvim-dap-virtual-text",
-        opts = {},
-    },
-
     -- Todo Comments
     {
         "folke/todo-comments.nvim",
@@ -310,47 +281,13 @@ require('lazy').setup({
         config = true, -- necessary as per https://github.com/rmagatti/goto-preview/issues/88
     },
 
-    -- Avante
-    {
-        "yetone/avante.nvim",
-
-        build = vim.fn.has("win32") ~= 0
-            and "powershell -ExecutionPolicy Bypass -File Build.ps1 -BuildFromSource false"
-            or "make",
-        event = "VeryLazy",
-        version = false, -- Never set this value to "*"! Never!
-
-        opts = require("core.plugin_config.avante"),
-
-        -- if you want to build from source then do `make BUILD_FROM_SOURCE=true`
-        dependencies = {
-            "nvim-treesitter/nvim-treesitter",
-            "stevearc/dressing.nvim",
-            "nvim-lua/plenary.nvim",
-            "MunifTanjim/nui.nvim",
-            --- The below dependencies are optional,
-            "echasnovski/mini.pick",         -- for file_selector provider mini.pick
-            "nvim-telescope/telescope.nvim", -- for file_selector provider telescope
-            "hrsh7th/nvim-cmp",              -- autocompletion for avante commands and mentions
-            "ibhagwan/fzf-lua",              -- for file_selector provider fzf
-            "stevearc/dressing.nvim",        -- for input provider dressing
-            "folke/snacks.nvim",             -- for input provider snacks
-            "nvim-tree/nvim-web-devicons",   -- or echasnovski/mini.icons
-            {
-                -- Make sure to set this up properly if you have lazy=true
-                'MeanderingProgrammer/render-markdown.nvim',
-                opts = {
-                    file_types = { "markdown", "Avante" },
-                },
-                ft = { "markdown", "Avante" },
-            },
-        },
-    },
-
     -- Trouble
     {
         "folke/trouble.nvim",
         opts = {}, -- for default options, refer to the configuration section for custom setup.
         cmd = "Trouble",
     },
+
+    -- Avante
+    require("core.plugin_config.avante"),
 })
