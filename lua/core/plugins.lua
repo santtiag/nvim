@@ -288,6 +288,14 @@ require('lazy').setup({
         cmd = "Trouble",
     },
 
+    -- autosuggestion ai
+    {
+        "supermaven-inc/supermaven-nvim",
+        config = function()
+            require("supermaven-nvim").setup({})
+        end,
+    },
+
     -- Avante
     require("core.plugin_config.avante"),
 })

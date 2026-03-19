@@ -32,7 +32,7 @@ return {
 
             -- OLLAMA 🦙
             ollama = {
-                model = "minimax-m2.5:cloud",
+                model = "minimax-m2.7:cloud",
                 is_env_set = function()
                     return require("avante.providers.ollama").check_endpoint_alive()
                 end,
