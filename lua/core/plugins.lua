@@ -48,8 +48,12 @@ require('lazy').setup({
     -- Telescope
     {
         'nvim-telescope/telescope.nvim',
-        tag = '0.1.8',
-        dependencies = { 'nvim-lua/plenary.nvim' }
+        version = '*',
+        dependencies = {
+            'nvim-lua/plenary.nvim',
+            -- optional but recommended
+            { 'nvim-telescope/telescope-fzf-native.nvim', build = 'make' },
+        }
     },
 
     -- MarkdownPreview
@@ -292,10 +296,11 @@ require('lazy').setup({
     {
         "supermaven-inc/supermaven-nvim",
         config = function()
-            require("supermaven-nvim").setup({})
+            require("supermaven-nvim").setup({
+                keymaps = {
+                    accept_suggestion = "<C-}>"
+                }
+            })
         end,
     },
-
-    -- Avante
-    require("core.plugin_config.avante"),
 })

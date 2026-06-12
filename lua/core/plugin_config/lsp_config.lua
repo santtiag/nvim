@@ -8,16 +8,24 @@ require("mason-lspconfig").setup({
     }
 })
 
-local lspconfig = require("lspconfig")
 local capabilities = require("cmp_nvim_lsp").default_capabilities()
 
--- Configurar servidores
-lspconfig.lua_ls.setup({ capabilities = capabilities })
-lspconfig.ts_ls.setup({ capabilities = capabilities })
-lspconfig.gopls.setup({ capabilities = capabilities })
-lspconfig.pyright.setup({ capabilities = capabilities })
-lspconfig.cssls.setup({ capabilities = capabilities })
-lspconfig.html.setup({ capabilities = capabilities })
+-- Configurar servidores con la API nativa de Neovim 0.11+
+vim.lsp.config("lua_ls", { capabilities = capabilities })
+vim.lsp.config("ts_ls", { capabilities = capabilities })
+vim.lsp.config("gopls", { capabilities = capabilities })
+vim.lsp.config("pyright", { capabilities = capabilities })
+vim.lsp.config("cssls", { capabilities = capabilities })
+vim.lsp.config("html", { capabilities = capabilities })
+
+vim.lsp.enable({
+    "lua_ls",
+    "ts_ls",
+    "gopls",
+    "pyright",
+    "cssls",
+    "html",
+})
 
 -- Configurar diagnósticos
 vim.diagnostic.config({
