@@ -303,4 +303,10 @@ require('lazy').setup({
             })
         end,
     },
+
+    -- swearing
+    -- {
+    --     "sphamba/smear-cursor.nvim",
+    --     opts = {}
+    -- },
 })
