@@ -3,6 +3,6 @@ require('mini.indentscope').setup({
     symbol = '│',
     options = { try_as_border = true },
     draw = {
-        delay = 10,
+        delay = 100,
     }
 })

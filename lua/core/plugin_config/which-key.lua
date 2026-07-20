@@ -25,9 +25,6 @@ wk.add({
     -- Lsp
     { "<leader>l", group = "Lsp", icon = "󰛨" },
 
-    -- Avante
-    { "<leader>a", group = "Avante", icon = "󱚝" },
-
     -- NOTE: -- Modes --
     { "<leader>m", group = "Modes", icon = "" },
 

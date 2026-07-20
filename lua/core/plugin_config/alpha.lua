@@ -11,10 +11,10 @@ dashboard.section.header.val = {
 }
 dashboard.section.buttons.val = {
     dashboard.button("e", "  New file", ":ene <BAR> startinsert <CR>"),
-    dashboard.button("SPC f f", "󰈞  Find File", ":Telescope fd<CR>"),
-    dashboard.button("SPC f r", "󰈢  Recently Opened Files", ":Telescope oldfiles<CR>"),
-    dashboard.button("SPC f g", "󰷊  Find Word", ":Telescope live_grep<CR>"),
-    dashboard.button("SPC f h", "󰡯  Help Tags", ":Telescope help_tags<CR>"),
+    dashboard.button("<space> f f", "󰈞  Find File", ":Telescope fd<CR>"),
+    dashboard.button("S<space> f r", "󰈢  Recently Opened Files", ":Telescope oldfiles<CR>"),
+    dashboard.button("<space> f g", "󰷊  Find Word", ":Telescope live_grep<CR>"),
+    dashboard.button("<space> f h", "󰡯  Help Tags", ":Telescope help_tags<CR>"),
     dashboard.button("q", "󰅚  Quit", ":qa<CR>"),
 }
 -- local handle = io.popen('fortune')

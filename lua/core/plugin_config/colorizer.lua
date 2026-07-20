@@ -1,5 +1,8 @@
 require("colorizer").setup {
-    filetypes = { "*" },
+    filetypes = {
+        "css", "scss", "html", "javascript", "typescript",
+        "javascriptreact", "typescriptreact", "lua", "conf", "vim",
+    },
     user_default_options = {
         RGB = true,          -- #RGB hex codes
         RRGGBB = true,       -- #RRGGBB hex codes
@@ -18,9 +21,7 @@ require("colorizer").setup {
         -- parsers can contain values used in |user_default_options|
         sass = { enable = true, parsers = { "css" }, }, -- Enable sass colors
         virtualtext = "■",
-        -- update color values even if buffer is not focused
-        -- example use: cmp_menu, cmp_docs
-        always_update = true
+        always_update = false
     },
     -- all the sub-options of filetypes apply to buftypes
     buftypes = {},
