@@ -32,7 +32,7 @@ require("catppuccin").setup({
     color_overrides = {},
     custom_highlights = {},
     integrations = {
-        cmp = true,
+        blink_cmp = true,
         gitsigns = true,
         nvimtree = true,
         treesitter = true,

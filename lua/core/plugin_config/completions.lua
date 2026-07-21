@@ -1,79 +1,44 @@
-local cmp = require("cmp")
-local luasnip = require("luasnip")
-local lspkind = require('lspkind')
-
-require("luasnip.loaders.from_vscode").lazy_load()
-
-cmp.setup({
-    snippet = {
-        expand = function(args)
-            luasnip.lsp_expand(args.body)
-        end,
+require('blink.cmp').setup({
+    -- 'default' <Tab>/<S-Tab> navegan, <CR> confirma
+    keymap = {
+        preset = 'default',
+        ['<CR>'] = { 'accept', 'fallback' },
+        ['<Tab>'] = { 'select_next', 'fallback' },
+        ['<S-Tab>'] = { 'select_prev', 'fallback' },
+        ['<C-o>'] = { 'show', 'fallback' },
+        ['<C-e>'] = { 'hide', 'fallback' },
+        ['<C-b>'] = { 'scroll_documentation_up', 'fallback' },
+        ['<C-f>'] = { 'scroll_documentation_down', 'fallback' },
     },
 
-    window = {
-        completion = cmp.config.window.bordered(),
-        documentation = cmp.config.window.bordered(),
+    appearance = {
+        nerd_font_variant = 'mono',
     },
 
-    mapping = cmp.mapping.preset.insert({
-        ['<C-b>'] = cmp.mapping.scroll_docs(-4),
-        ['<C-f>'] = cmp.mapping.scroll_docs(4),
-        ['<C-o>'] = cmp.mapping.complete(),
-        ['<C-e>'] = cmp.mapping.abort(),
-        ['<CR>'] = cmp.mapping.confirm({ select = true }),
-        ["<Tab>"] = cmp.mapping(cmp.mapping.select_next_item(), { "i", "s" }),
-        ["<S-Tab>"] = cmp.mapping(cmp.mapping.select_prev_item(), { "i", "s" }),
-    }),
-
-    sources = cmp.config.sources(
-        {
-            { name = 'lazydev', group_index = 0 },
-            { name = 'nvim_lsp' },
-            { name = 'luasnip' },
-            { name = 'path' },
+    completion = {
+        menu = {
+            border = 'rounded',
+            draw = { columns = { { 'kind_icon' }, { 'label', 'label_description', gap = 1 }, { 'source_name' } } },
         },
-        {
-            { name = 'buffer' },
-        }
-    ),
-    formatting = {
-        format = lspkind.cmp_format({
-            mode = "symbol_text", -- muestra icono + texto
-            maxwidth = 50,
-            ellipsis_char = "...",
-            menu = {
-                nvim_lsp = "󰘦",
-                luasnip  = "󰠠",
-                buffer   = "󰽘",
-                path     = "",
-            },
-        }),
-
-        -- format = function(entry, vim_item)
-        --     vim_item.kind = string.format('%s %s', lspkind.presets.default[vim_item.kind], vim_item.kind)
-        --     vim_item.menu = ({
-        --         nvim_lsp = '󰞶',
-        --         nvim_lua = "",
-        --         zsh = "",
-        --         luasnip = '',
-        --         -- vsnip = "",
-        --         path = "󰝰",
-        --         buffer = "󰽘",
-        --         treesitter = "",
-        --     })[entry.source.name]
-        --     return vim_item
-        -- end,
+        documentation = {
+            auto_show = true,
+            window = { border = 'rounded' },
+        },
     },
-})
 
--- Completado para `/` y `:`
-cmp.setup.cmdline({ "/", "?" }, {
-    mapping = cmp.mapping.preset.cmdline(),
-    sources = { { name = "buffer" } },
-})
+    snippets = { preset = 'default' }, -- usa vim.snippet + friendly-snippets
 
-cmp.setup.cmdline(":", {
-    mapping = cmp.mapping.preset.cmdline(),
-    sources = cmp.config.sources({ { name = "path" } }, { { name = "cmdline" } }),
+    sources = {
+        default = { 'lsp', 'path', 'snippets', 'buffer', 'lazydev' },
+        providers = {
+            lazydev = {
+                name = 'LazyDev',
+                module = 'lazydev.integrations.blink',
+                score_offset = 100,
+            },
+        },
+    },
+
+    -- motor de fuzzy en Rust
+    fuzzy = { implementation = 'prefer_rust_with_warning' },
 })

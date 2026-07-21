@@ -8,8 +8,8 @@ end
 
 require('lazy').setup({
     -- libs
-    { 'nvim-lua/plenary.nvim',   lazy = true },
-    { 'MunifTanjim/nui.nvim',    lazy = true },
+    { 'nvim-lua/plenary.nvim', lazy = true },
+    { 'MunifTanjim/nui.nvim',  lazy = true },
     {
         'nvim-tree/nvim-web-devicons',
         lazy = true,
@@ -33,7 +33,6 @@ require('lazy').setup({
         dependencies = {
             'williamboman/mason.nvim',
             'williamboman/mason-lspconfig.nvim',
-            'hrsh7th/cmp-nvim-lsp',
         },
         config = function()
             require('core.plugin_config.mason')
@@ -43,22 +42,10 @@ require('lazy').setup({
 
     -- Completion + snippets
     {
-        'hrsh7th/nvim-cmp',
+        'saghen/blink.cmp',
+        version = '1.*', -- release con binarios precompilados (sin build de Rust)
         event = { 'InsertEnter', 'CmdlineEnter' },
-        dependencies = {
-            'hrsh7th/cmp-nvim-lsp',
-            'hrsh7th/cmp-buffer',
-            'hrsh7th/cmp-path',
-            'hrsh7th/cmp-cmdline',
-            {
-                'L3MON4D3/LuaSnip',
-                version = 'v2.*',
-                build = 'make install_jsregexp',
-            },
-            'saadparwaiz1/cmp_luasnip',
-            'rafamadriz/friendly-snippets',
-            'onsails/lspkind-nvim',
-        },
+        dependencies = { 'rafamadriz/friendly-snippets' },
         config = use('completions'),
     },
 
@@ -315,4 +302,22 @@ require('lazy').setup({
             })
         end,
     },
+
+    -- render-markdown
+    {
+        'MeanderingProgrammer/render-markdown.nvim',
+        dependencies = { 'nvim-treesitter/nvim-treesitter', 'nvim-mini/mini.nvim' }, -- if you use the mini.nvim suite
+        -- dependencies = { 'nvim-treesitter/nvim-treesitter', 'nvim-mini/mini.icons' },        -- if you use standalone mini plugins
+        -- dependencies = { 'nvim-treesitter/nvim-treesitter', 'nvim-tree/nvim-web-devicons' }, -- if you prefer nvim-web-devicons
+        ---@module 'render-markdown'
+        ---@type render.md.UserConfig
+        opts = {},
+    },
+
+    -- formatter
+    {
+        'stevearc/conform.nvim',
+        opts = {},
+    },
+
 })
