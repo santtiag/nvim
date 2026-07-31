@@ -1,0 +1,382 @@
+"$schema" = 'https://starship.rs/config-schema.json'
+
+# ───────────────────────────────────────────
+# Ajustes de nivel raíz — TIENEN que ir antes de cualquier
+# tabla [algo], si no TOML los mete dentro de esa tabla.
+# ───────────────────────────────────────────
+palette = "monochrome"
+
+add_newline = true
+command_timeout = 1000
+scan_timeout = 30
+
+format = """
+$os\
+$username\
+$directory\
+$git_branch\
+$git_status\
+$aws\
+$gcloud\
+$azure\
+$docker_context\
+$kubernetes\
+$helm\
+$terraform\
+$nix_shell\
+$vagrant\
+$c\
+$cmake\
+$rust\
+$golang\
+$zig\
+$swift\
+$crystal\
+$vlang\
+$nim\
+$haskell\
+$ocaml\
+$java\
+$kotlin\
+$scala\
+$dotnet\
+$nodejs\
+$deno\
+$bun\
+$python\
+$ruby\
+$php\
+$perl\
+$lua\
+$elixir\
+$erlang\
+$elm\
+$purescript\
+$julia\
+$rlang\
+$conda\
+$line_break\
+$character"""
+
+right_format = """$cmd_duration$time"""
+
+# ───────────────────────────────────────────
+# Paleta — todo el color del prompt vive aquí.
+# Si quieres cambiar el acento, solo tocas esta tabla.
+# ───────────────────────────────────────────
+[palettes.monochrome]
+fg = "white"          # texto principal (directorio)
+dim = "bright-black"  # texto secundario (gris, la mayoría del prompt)
+accent = "#E8A33D"    # el único color: alertas (git sucio, error, root, batería baja, comando lento)
+
+# ───────────────────────────────────────────
+# Símbolo de entrada
+# ───────────────────────────────────────────
+[character]
+success_symbol = "[❯](bold fg)"
+error_symbol = "[❯](accent)"
+vimcmd_symbol = "[❮](bold fg)"
+
+# ───────────────────────────────────────────
+# Sistema y usuario
+# ───────────────────────────────────────────
+[os]
+disabled = false
+style = "dim"
+format = "[$symbol ]($style)"
+
+[os.symbols]
+Fedora = "󰣛"
+
+[username]
+style_user = "dim"
+style_root = "accent"     # root se marca con el acento
+format = "[$user ]($style)"
+show_always = false
+disabled = false
+
+# ───────────────────────────────────────────
+# Directorio — el elemento con más peso visual
+# ───────────────────────────────────────────
+[directory]
+style = "bold fg"
+format = "[$path]($style) "
+truncation_length = 3
+truncate_to_repo = true
+truncation_symbol = "…/"
+read_only = " 󰌾"
+
+[directory.substitutions]
+"Documents" = "󰈙 "
+"Downloads" = " "
+
+# ───────────────────────────────────────────
+# Git — la rama en gris, el estado en el acento
+# ───────────────────────────────────────────
+[git_branch]
+style = "dim"
+format = "[on]($style) [$symbol$branch]($style) "
+symbol = " "
+
+[git_status]
+style = "accent"
+format = "[$all_status$ahead_behind]($style) "
+
+# ───────────────────────────────────────────
+# Nube
+# ───────────────────────────────────────────
+[aws]
+style = "dim"
+format = "[$symbol$profile]($style) "
+symbol = "☁️ "
+disabled = false
+
+[gcloud]
+style = "dim"
+format = "[$symbol$account]($style) "
+symbol = "☁️ "
+disabled = false
+
+[azure]
+style = "dim"
+format = "[$symbol$subscription]($style) "
+symbol = "󰠅 "
+disabled = false
+
+# ───────────────────────────────────────────
+# Contenedores e infraestructura
+# ───────────────────────────────────────────
+[docker_context]
+style = "dim"
+format = "[$symbol$context]($style) "
+symbol = " "
+only_with_files = true
+
+[kubernetes]
+disabled = false
+style = "dim"
+format = "[$symbol$context]($style) "
+symbol = "☸ "
+
+[helm]
+style = "dim"
+format = "[$symbol($version)]($style) "
+symbol = "⎈ "
+
+[terraform]
+style = "dim"
+format = "[$symbol$workspace]($style) "
+symbol = "💠 "
+
+[nix_shell]
+style = "dim"
+format = "[$symbol$state]($style) "
+symbol = "❄️ "
+
+[vagrant]
+style = "dim"
+format = "[$symbol($version)]($style) "
+symbol = "⍱ "
+
+# ───────────────────────────────────────────
+# Lenguajes de sistemas / compilados
+# ───────────────────────────────────────────
+[c]
+style = "dim"
+format = "[$symbol($version)]($style) "
+symbol = "C "
+
+[cmake]
+style = "dim"
+format = "[$symbol($version)]($style) "
+symbol = "△ "
+
+[rust]
+style = "dim"
+format = "[$symbol($version)]($style) "
+symbol = " "
+
+[golang]
+style = "dim"
+format = "[$symbol($version)]($style) "
+symbol = " "
+
+[zig]
+style = "dim"
+format = "[$symbol($version)]($style) "
+symbol = " "
+
+[swift]
+style = "dim"
+format = "[$symbol($version)]($style) "
+symbol = " "
+
+[crystal]
+style = "dim"
+format = "[$symbol($version)]($style) "
+symbol = "🔮 "
+
+[vlang]
+style = "dim"
+format = "[$symbol($version)]($style) "
+symbol = "V "
+
+[nim]
+style = "dim"
+format = "[$symbol($version)]($style) "
+symbol = "👑 "
+
+[haskell]
+style = "dim"
+format = "[$symbol($version)]($style) "
+symbol = " "
+
+[ocaml]
+style = "dim"
+format = "[$symbol($version)]($style) "
+symbol = " "
+
+# ───────────────────────────────────────────
+# JVM y .NET
+# ───────────────────────────────────────────
+[java]
+style = "dim"
+format = "[$symbol($version)]($style) "
+symbol = " "
+
+[kotlin]
+style = "dim"
+format = "[$symbol($version)]($style) "
+symbol = " "
+
+[scala]
+style = "dim"
+format = "[$symbol($version)]($style) "
+symbol = " "
+
+[dotnet]
+style = "dim"
+format = "[$symbol($version)]($style) "
+symbol = " "
+
+# ───────────────────────────────────────────
+# Web / scripting
+# ───────────────────────────────────────────
+[nodejs]
+style = "dim"
+format = "[$symbol($version)]($style) "
+symbol = " "
+
+[deno]
+style = "dim"
+format = "[$symbol($version)]($style) "
+symbol = " "
+
+[bun]
+style = "dim"
+format = "[$symbol($version)]($style) "
+symbol = "🍞 "
+
+[python]
+style = "dim"
+format = "[$symbol($version)]($style) "
+symbol = " "
+
+[ruby]
+style = "dim"
+format = "[$symbol($version)]($style) "
+symbol = " "
+
+[php]
+style = "dim"
+format = "[$symbol($version)]($style) "
+symbol = " "
+
+[perl]
+style = "dim"
+format = "[$symbol($version)]($style) "
+symbol = " "
+
+[lua]
+style = "dim"
+format = "[$symbol($version)]($style) "
+symbol = " "
+
+[elixir]
+style = "dim"
+format = "[$symbol($version)]($style) "
+symbol = " "
+
+[erlang]
+style = "dim"
+format = "[$symbol($version)]($style) "
+symbol = " "
+
+[elm]
+style = "dim"
+format = "[$symbol($version)]($style) "
+symbol = " "
+
+[purescript]
+style = "dim"
+format = "[$symbol($version)]($style) "
+symbol = " "
+
+# ───────────────────────────────────────────
+# Datos / ciencia
+# ───────────────────────────────────────────
+[julia]
+style = "dim"
+format = "[$symbol($version)]($style) "
+symbol = " "
+
+[rlang]
+style = "dim"
+format = "[$symbol($version)]($style) "
+symbol = "󰟔 "
+
+[conda]
+style = "dim"
+format = "[$symbol$environment]($style) "
+symbol = "🅒 "
+
+# ───────────────────────────────────────────
+# Prompt derecho
+# ───────────────────────────────────────────
+[cmd_duration]
+min_time = 4000
+style = "accent"
+format = "[$duration]($style) "
+show_notifications = false
+
+[time]
+disabled = false
+time_format = "%H:%M"
+style = "dim"
+format = "[$time]($style)"
+
+# ───────────────────────────────────────────
+# Opcionales
+# ───────────────────────────────────────────
+[battery]
+disabled = false
+full_symbol = "●"
+charging_symbol = "●"
+discharging_symbol = "●"
+
+[[battery.display]]
+threshold = 20
+style = "accent"
+
+[memory_usage]
+disabled = true
+threshold = 75
+symbol = "󰍛 "
+style = "accent"
+format = "[$symbol${ram}]($style) "
+
+[package]
+disabled = true
+symbol = "󰏗 "
+style = "dim"
+format = "[$symbol$version]($style) "

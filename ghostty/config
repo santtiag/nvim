@@ -1,0 +1,47 @@
+auto-update = download
+theme = TokyoNight Night
+font-family = "Iosevka Nerd Font Medium"
+font-feature = +liga
+font-feature = +calt
+font-size = 12
+
+gtk-titlebar = false
+window-theme = ghostty
+window-show-tab-bar = auto
+window-width = 170
+window-height = 45
+
+background-opacity = 0.88
+background-blur = true
+scrollbar = never
+
+copy-on-select = clipboard
+custom-shader = shaders/cursor_smear.glsl
+custom-shader-animation = true
+split-divider-color = white
+
+bold-is-bright = true
+
+# -- Keybindings --
+
+keybind = alt+enter=toggle_maximize
+
+# move
+keybind = alt+l=goto_split:right
+keybind = alt+h=goto_split:left
+keybind = alt+j=goto_split:down
+keybind = alt+k=goto_split:up
+
+# create
+keybind = shift+alt+l=new_split:right
+keybind = shift+alt+h=new_split:left
+keybind = shift+alt+j=new_split:down
+keybind = shift+alt+k=new_split:up
+
+keybind = shift+ctrl+l=next_tab
+keybind = shift+ctrl+h=previous_tab
+
+keybind = alt+x=close_surface
+keybind = alt+f=toggle_split_zoom
+
+keybind = alt+o=toggle_tab_overview
