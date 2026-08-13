@@ -1,18 +1,18 @@
 local alpha = require 'alpha'
 local dashboard = require 'alpha.themes.dashboard'
 dashboard.section.header.val = {
-    [[  ██╗ ██╗    ███████╗ █████╗ ███╗   ██╗████████╗████████╗██╗ █████╗  ██████╗     ██╗ ██╗  ]],
-    [[ ██╔╝██╔╝    ██╔════╝██╔══██╗████╗  ██║╚══██╔══╝╚══██╔══╝██║██╔══██╗██╔════╝     ╚██╗╚██╗ ]],
-    [[██╔╝██╔╝     ███████╗███████║██╔██╗ ██║   ██║      ██║   ██║███████║██║  ███╗     ╚██╗╚██╗]],
-    [[╚██╗╚██╗     ╚════██║██╔══██║██║╚██╗██║   ██║      ██║   ██║██╔══██║██║   ██║     ██╔╝██╔╝]],
-    [[ ╚██╗╚██╗    ███████║██║  ██║██║ ╚████║   ██║      ██║   ██║██║  ██║╚██████╔╝    ██╔╝██╔╝ ]],
-    [[  ╚═╝ ╚═╝    ╚══════╝╚═╝  ╚═╝╚═╝  ╚═══╝   ╚═╝      ╚═╝   ╚═╝╚═╝  ╚═╝ ╚═════╝     ╚═╝ ╚═╝  ]],
+    [[ ███████╗ █████╗ ███╗   ██╗████████╗████████╗██╗ █████╗  ██████╗  ]],
+    [[ ██╔════╝██╔══██╗████╗  ██║╚══██╔══╝╚══██╔══╝██║██╔══██╗██╔════╝  ]],
+    [[ ███████╗███████║██╔██╗ ██║   ██║      ██║   ██║███████║██║  ███╗ ]],
+    [[ ╚════██║██╔══██║██║╚██╗██║   ██║      ██║   ██║██╔══██║██║   ██║ ]],
+    [[ ███████║██║  ██║██║ ╚████║   ██║      ██║   ██║██║  ██║╚██████╔╝ ]],
+    [[ ╚══════╝╚═╝  ╚═╝╚═╝  ╚═══╝   ╚═╝      ╚═╝   ╚═╝╚═╝  ╚═╝ ╚═════╝  ]],
 
 }
 dashboard.section.buttons.val = {
     dashboard.button("e", "  New file", ":ene <BAR> startinsert <CR>"),
     dashboard.button("<space> f f", "󰈞  Find File", ":Telescope fd<CR>"),
-    dashboard.button("S<space> f r", "󰈢  Recently Opened Files", ":Telescope oldfiles<CR>"),
+    dashboard.button("<space> f r", "󰈢  Recently Opened Files", ":Telescope oldfiles<CR>"),
     dashboard.button("<space> f g", "󰷊  Find Word", ":Telescope live_grep<CR>"),
     dashboard.button("<space> f h", "󰡯  Help Tags", ":Telescope help_tags<CR>"),
     dashboard.button("q", "󰅚  Quit", ":qa<CR>"),

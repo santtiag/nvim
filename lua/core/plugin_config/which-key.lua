@@ -2,7 +2,17 @@ local wk = require("which-key")
 
 wk.setup({
     preset = "modern",
-    win = { border = "rounded" },
+    win = {
+        border = "rounded",
+        no_overlap = false,
+        -- El preset "modern" recorta a 25 líneas y obliga a hacer scroll.
+        height = { min = 4, max = 0.9 },
+        width = 0.9,
+    },
+    layout = {
+        width = { min = 20 },
+        spacing = 3,
+    },
     icons = {
         mappings = true,
         colors = true,
@@ -18,6 +28,9 @@ wk.setup({
             { pattern = "code action",     icon = "",   color = "yellow" },
             { pattern = "format",          icon = "󰉼",   color = "cyan" },
             { pattern = "workspace",       icon = "",   color = "purple" },
+            { pattern = "breadcrumb",      icon = "󰆤",   color = "blue" },
+            { pattern = "context",         icon = "󰆧",   color = "blue" },
+            { pattern = "explorer",        icon = "󰙅",   color = "yellow" },
         },
     },
 })
@@ -25,10 +38,16 @@ wk.setup({
 wk.add({
 
     -- ── Acciones básicas ──────────────────────────────────────────────
-    { "<leader>s", "<CMD>w<CR>",          desc = "Save",             mode = "n", icon = "󰆓" },
-    { "<leader>q", "<CMD>qa<CR>",         desc = "Quit All",         mode = "n", icon = "󰗼" },
-    { "<leader>e", "<CMD>Oil<CR>",        desc = "File Explorer",    mode = "n", icon = "󰙅" },
-    { "<leader>H", "<CMD>nohlsearch<CR>", desc = "Clear Highlight",  mode = "n", icon = "󰸱" },
+    { "<leader>s", "<CMD>w<CR>",          desc = "Save",            mode = "n", icon = "󰆓" },
+    { "<leader>q", "<CMD>qa<CR>",         desc = "Quit All",        mode = "n", icon = "󰗼" },
+    { "<leader>H", "<CMD>nohlsearch<CR>", desc = "Clear Highlight", mode = "n", icon = "󰸱" },
+    { "<leader>;", function() require("dropbar.api").pick() end, desc = "Pick Breadcrumb", mode = "n", icon = "󰆤" },
+
+    -- ── Explorador (yazi) ─────────────────────────────────────────────
+    { "<leader>e", function() require("yazi").yazi() end,                       desc = "File Explorer",   mode = { "n", "v" }, icon = "󰙅" },
+    { "<leader>E", function() require("yazi").yazi(nil, vim.fn.getcwd()) end,   desc = "Explorer (CWD)",  mode = "n",          icon = "󰉋" },
+    { "<leader>Y", function() require("yazi").toggle() end,                     desc = "Resume Explorer", mode = "n",          icon = "󰑐" },
+    { "-",         function() require("yazi").yazi() end,                       desc = "Open Explorer",   mode = "n",          icon = "󰙅" },
 
     -- ── Ventanas ──────────────────────────────────────────────────────
     { "<leader>w",  group = "Window", icon = "" },
@@ -52,13 +71,13 @@ wk.add({
     -- ── Telescope / Búsqueda ──────────────────────────────────────────
     { "<leader>f",  group = "Find", icon = "" },
     { "<leader>ff", function() require('telescope.builtin').fd() end,                     desc = "Find Files",       mode = "n", icon = "󰈞" },
-    { "<leader>fF", function() require('telescope.builtin').fd({ cwd = '$HOME' }) end,    desc = "Find Files (cwd)", mode = "n", icon = "󰈞" },
+    { "<leader>fF", function() require('telescope.builtin').fd({ cwd = vim.fn.expand('~') }) end,    desc = "Find Files (cwd)", mode = "n", icon = "󰈞" },
     { "<leader>fg", function() require('telescope.builtin').live_grep() end,             desc = "Live Grep",        mode = "n", icon = "󰊄" },
-    { "<leader>fG", function() require('telescope.builtin').live_grep({ cwd = '$HOME' }) end, desc = "Live Grep (cwd)", mode = "n", icon = "󰊄" },
+    { "<leader>fG", function() require('telescope.builtin').live_grep({ cwd = vim.fn.expand('~') }) end, desc = "Live Grep (cwd)", mode = "n", icon = "󰊄" },
     { "<leader>fh", function() require('telescope.builtin').help_tags() end,             desc = "Help Tags",        mode = "n", icon = "󰮥" },
     { "<leader>fr", function() require('telescope.builtin').oldfiles() end,              desc = "Recent Files",     mode = "n", icon = "" },
     { "<leader>fb", function() require('telescope.builtin').buffers() end,               desc = "Buffers",          mode = "n", icon = "󰓩" },
-    { "<leader>fp", "<CMD>Telescope harpoon marks<CR>",                                  desc = "Harpoon Marks",    mode = "n", icon = "󱡁" },
+    { "<leader>fp", function() require('harpoon.ui').toggle_quick_menu() end,             desc = "Harpoon Marks",    mode = "n", icon = "󱡁" },
     { "<leader>fs", function() require("rip-substitute").sub() end,                      desc = "Search & Replace", mode = { "n", "x" }, icon = "" },
 
     -- ── Goto (goto-preview) ───────────────────────────────────────────
@@ -139,6 +158,18 @@ wk.add({
             else require('gitsigns').nav_hunk('prev') end
         end,
         desc = "Previous Hunk", mode = "n", icon = "",
+    },
+
+    -- Navegación de breadcrumbs (dropbar)
+    {
+        "[;",
+        function() require("dropbar.api").goto_context_start() end,
+        desc = "Context Start", mode = "n", icon = "󰆧",
+    },
+    {
+        "];",
+        function() require("dropbar.api").select_next_context() end,
+        desc = "Next Context", mode = "n", icon = "󰆧",
     },
 
     -- Text object

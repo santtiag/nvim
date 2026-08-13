@@ -11,7 +11,14 @@ require("mason-lspconfig").setup({
 local capabilities = require("blink.cmp").get_lsp_capabilities()
 
 -- Configurar servidores con la API nativa de Neovim 0.11+
-vim.lsp.config("lua_ls", { capabilities = capabilities })
+vim.lsp.config("lua_ls", {
+    capabilities = capabilities,
+    settings = {
+        Lua = {
+            workspace = { checkThirdParty = false },
+        },
+    },
+})
 vim.lsp.config("ts_ls", { capabilities = capabilities })
 vim.lsp.config("gopls", { capabilities = capabilities })
 vim.lsp.config("pyright", { capabilities = capabilities })

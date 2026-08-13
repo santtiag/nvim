@@ -109,6 +109,9 @@ require('lazy').setup({
             'nvim-lua/plenary.nvim',
             { 'nvim-telescope/telescope-fzf-native.nvim', build = 'make' },
         },
+        config = function()
+            require('telescope').load_extension('fzf')
+        end,
     },
 
     -- Fzf
@@ -241,23 +244,32 @@ require('lazy').setup({
 
     -- breadcrumbs
     {
-        'utilyre/barbecue.nvim',
-        name = 'barbecue',
-        version = '*',
+        'Bekaboo/dropbar.nvim',
         event = { 'BufReadPost', 'BufNewFile' },
         dependencies = {
-            'SmiteshP/nvim-navic',
-            'nvim-tree/nvim-web-devicons',
+            { 'nvim-telescope/telescope-fzf-native.nvim', build = 'make' },
         },
-        config = use('breadcrumbs'),
     },
 
-    -- Oil
+    -- yazi (mapeos en which-key)
     {
-        'stevearc/oil.nvim',
-        lazy = false,
-        dependencies = { { 'echasnovski/mini.icons', opts = {} } },
-        config = use('oil'),
+        'mikavilpas/yazi.nvim',
+        version = '*',
+        lazy = true,
+        cmd = 'Yazi',
+        dependencies = { { 'nvim-lua/plenary.nvim', lazy = true } },
+        init = function()
+            -- El snap publica el CLI como `yazi.ya`; yazi.nvim busca `ya` en PATH.
+            if vim.fn.executable('ya') == 0 then
+                local snap_dir = '/snap/yazi/current'
+                if vim.fn.filereadable(snap_dir .. '/ya') == 1 then
+                    vim.env.PATH = snap_dir .. ':' .. vim.env.PATH
+                end
+            end
+        end,
+        opts = {
+            yazi_floating_window_border = 'rounded',
+        },
     },
 
     -- Twilight Nvim
@@ -288,19 +300,6 @@ require('lazy').setup({
         'folke/trouble.nvim',
         cmd = 'Trouble',
         opts = {},
-    },
-
-    -- autosuggestion ai
-    {
-        'supermaven-inc/supermaven-nvim',
-        event = 'InsertEnter',
-        config = function()
-            require('supermaven-nvim').setup({
-                keymaps = {
-                    accept_suggestion = '<C-}>',
-                },
-            })
-        end,
     },
 
     -- render-markdown

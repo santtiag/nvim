@@ -3,7 +3,7 @@ local conditions = {
         return vim.fn.empty(vim.fn.expand('%:t')) ~= 1
     end,
     hide_in_width = function()
-        return vim.fn.winwidth(0) > 80
+        return vim.o.columns > 100
     end,
 }
 
@@ -19,24 +19,22 @@ local colors = {
 
 local augroup = vim.api.nvim_create_augroup('user.lualine', {})
 
--- ── Modo con icono ──────────────────────────────────────────────────
 local mode_icons = {
-    NORMAL   = ' ',
-    INSERT   = ' ',
-    VISUAL   = '󰈈 ',
+    NORMAL     = ' ',
+    INSERT     = ' ',
+    VISUAL     = '󰈈 ',
     ['V-LINE'] = '󰈈 ',
     ['V-BLOCK'] = '󰈈 ',
-    COMMAND  = ' ',
-    REPLACE  = ' ',
-    TERMINAL = ' ',
-    SELECT   = '󰒉 ',
+    COMMAND    = ' ',
+    REPLACE    = ' ',
+    TERMINAL   = ' ',
+    SELECT     = '󰒉 ',
 }
 
 local function mode_fmt(str)
     return (mode_icons[str] or '') .. str
 end
 
--- ── LSP: nombre cacheado por buffer + icono por servidor ────────────
 local lsp_icons = {
     lua_ls        = ' ',
     pyright       = ' ',
@@ -49,35 +47,19 @@ local lsp_icons = {
     jsonls        = ' ',
     html          = ' ',
     cssls         = ' ',
+    lazydev       = ' ',
 }
 
-vim.api.nvim_create_autocmd({ 'LspAttach', 'LspDetach' }, {
-    group = augroup,
-    callback = function(ev)
-        local clients = vim.lsp.get_clients({ bufnr = ev.buf })
-        local names = {}
-        for _, client in ipairs(clients) do
-            if ev.event ~= 'LspDetach' or client.id ~= ev.data.client_id then
-                table.insert(names, client.name)
-            end
-        end
-        vim.b[ev.buf].lsp_name = names[1]
-    end,
-})
-
--- por si el servidor ya estaba adjunto antes de que cargara lualine
-do
-    local client = vim.lsp.get_clients({ bufnr = 0 })[1]
-    if client then vim.b.lsp_name = client.name end
-end
-
 local function lsp_status()
-    local name = vim.b.lsp_name
-    if not name then return '' end
-    return (lsp_icons[name] or ' ') .. name
+    local clients = vim.lsp.get_clients({ bufnr = 0 })
+    if #clients == 0 then return '' end
+    local parts = {}
+    for _, client in ipairs(clients) do
+        table.insert(parts, (lsp_icons[client.name] or '󰒋 ') .. client.name)
+    end
+    return table.concat(parts, ' ')
 end
 
--- ── Git ahead/behind: async, cacheado, sin git por render ───────────
 local git_arrows = ''
 
 local function update_git_arrows()
@@ -95,7 +77,11 @@ local function update_git_arrows()
                     result = table.concat(parts, ' ')
                 end
             end
-            git_arrows = result
+            vim.schedule(function()
+                if git_arrows == result then return end
+                git_arrows = result
+                pcall(require('lualine').refresh)
+            end)
         end
     )
 end
@@ -106,25 +92,10 @@ vim.api.nvim_create_autocmd({ 'FocusGained', 'BufWritePost', 'DirChanged', 'VimE
 })
 update_git_arrows()
 
--- ── Macro / Supermaven / Harpoon ────────────────────────────────────
 local function macro_recording()
     local reg = vim.fn.reg_recording()
     if reg == '' then return '' end
     return ' @' .. reg
-end
-
--- package.loaded en vez de require: no fuerza la carga lazy del plugin
-local function supermaven_status()
-    if not package.loaded['supermaven-nvim'] then return '' end
-    return ''
-end
-
-local function supermaven_color()
-    local api = package.loaded['supermaven-nvim.api']
-    if api and api.is_running() then
-        return { fg = colors.green }
-    end
-    return { fg = colors.grey }
 end
 
 local function harpoon_status()
@@ -143,7 +114,7 @@ require('lualine').setup {
         component_separators = '',
         section_separators = { left = '', right = '' },
         disabled_filetypes = {
-            statusline = { 'oil', 'trouble' },
+            statusline = {},
             winbar = {},
         },
         ignore_focus = {},
@@ -153,7 +124,7 @@ require('lualine').setup {
             statusline = 1000,
             tabline = 1000,
             winbar = 1000,
-        }
+        },
     },
     sections = {
         lualine_a = {
@@ -173,7 +144,29 @@ require('lualine').setup {
                     added = { fg = colors.green },
                     modified = { fg = colors.orange },
                     removed = { fg = colors.red },
-                }
+                },
+            },
+        },
+        lualine_c = {
+            {
+                'filename',
+                path = 1,
+                symbols = { modified = ' ●', readonly = ' ', unnamed = '' },
+                cond = conditions.buffer_not_empty,
+                color = { fg = colors.magenta, gui = 'bold' },
+            },
+            {
+                macro_recording,
+                color = { fg = colors.red, gui = 'bold' },
+            },
+            { 'searchcount' },
+            { 'selectioncount' },
+        },
+        lualine_x = {
+            {
+                lsp_status,
+                cond = conditions.hide_in_width,
+                color = { fg = '#ffffff', gui = 'bold' },
             },
             {
                 'diagnostics',
@@ -181,43 +174,21 @@ require('lualine').setup {
                 symbols = {
                     error = ' ',
                     warn  = ' ',
-                    info  = ' '
+                    info  = ' ',
+                    hint  = '󰌵 ',
                 },
                 diagnostics_color = {
                     error = { fg = colors.red },
                     warn  = { fg = colors.yellow },
                     info  = { fg = colors.cyan },
+                    hint  = { fg = colors.grey },
                 },
                 cond = conditions.hide_in_width,
-                separator = ''
-            },
-        },
-        lualine_c = {
-            {
-                'filename',
-                cond = conditions.buffer_not_empty,
-                color = { fg = colors.magenta, gui = 'bold' }
-            },
-            {
-                macro_recording,
-                color = { fg = colors.red, gui = 'bold' },
-            },
-            { 'searchcount' },
-        },
-        lualine_x = {
-            {
-                supermaven_status,
-                color = supermaven_color,
             },
             {
                 require('lazy.status').updates,
                 cond = require('lazy.status').has_updates,
                 color = { fg = colors.orange },
-            },
-            {
-                lsp_status,
-                cond = conditions.hide_in_width,
-                color = { fg = '#ffffff', gui = 'bold' },
             },
             { 'filetype' },
         },
@@ -227,6 +198,12 @@ require('lualine').setup {
                 color = { fg = colors.cyan },
             },
             { 'progress' },
+            { 'encoding', cond = conditions.hide_in_width },
+            {
+                'fileformat',
+                symbols = { unix = '', dos = '', mac = '' },
+                cond = conditions.hide_in_width,
+            },
         },
         lualine_z = {
             { 'location' },
@@ -242,10 +219,9 @@ require('lualine').setup {
     tabline = {},
     winbar = {},
     inactive_winbar = {},
-    extensions = {}
+    extensions = { 'lazy', 'mason' },
 }
 
--- que el indicador de macro aparezca al instante, sin esperar el refresh
 vim.api.nvim_create_autocmd({ 'RecordingEnter', 'RecordingLeave' }, {
     group = augroup,
     callback = function()
