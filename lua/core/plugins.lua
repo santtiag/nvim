@@ -25,6 +25,7 @@ require('lazy').setup({
     },
     { 'catppuccin/nvim',          name = 'catppuccin', lazy = true },
     { 'ellisonleao/gruvbox.nvim', lazy = true },
+    { 'rebelot/kanagawa.nvim'},
 
     -- LSP
     {
@@ -69,10 +70,10 @@ require('lazy').setup({
 
     -- Statusline
     {
-        'nvim-lualine/lualine.nvim',
-        event = 'VeryLazy',
+        'rebelot/heirline.nvim',
+        event = 'UiEnter',
         dependencies = { 'nvim-tree/nvim-web-devicons' },
-        config = use('lualine'),
+        config = use('heirline'),
     },
 
     -- Which-key
