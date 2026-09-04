@@ -1,5 +1,6 @@
 auto-update = download
-theme = TokyoNight Night
+# theme = TokyoNight Night
+theme = Kanagawa Wave
 font-family = "Iosevka Nerd Font Medium"
 font-feature = +liga
 font-feature = +calt
@@ -11,7 +12,7 @@ window-show-tab-bar = auto
 window-width = 170
 window-height = 45
 
-background-opacity = 0.88
+# background-opacity = 0.9
 background-blur = true
 scrollbar = never
 
@@ -21,27 +22,27 @@ custom-shader-animation = true
 split-divider-color = white
 
 bold-is-bright = true
+initial-command = ~/.local/bin/herdr
 
 # -- Keybindings --
-
+# keybind = clear
 keybind = alt+enter=toggle_maximize
+keybind = alt+x=close_surface
+keybind = alt+o=toggle_tab_overview
+keybind = ctrl+shift+t=new_tab
 
 # move
-keybind = alt+l=goto_split:right
-keybind = alt+h=goto_split:left
-keybind = alt+j=goto_split:down
-keybind = alt+k=goto_split:up
+# keybind = alt+l=goto_split:right
+# keybind = alt+h=goto_split:left
+# keybind = alt+j=goto_split:down
+# keybind = alt+k=goto_split:up
 
 # create
-keybind = shift+alt+l=new_split:right
-keybind = shift+alt+h=new_split:left
-keybind = shift+alt+j=new_split:down
-keybind = shift+alt+k=new_split:up
+# keybind = shift+alt+l=new_split:right
+# keybind = shift+alt+h=new_split:left
+# keybind = shift+alt+j=new_split:down
+# keybind = shift+alt+k=new_split:up
 
-keybind = shift+ctrl+l=next_tab
-keybind = shift+ctrl+h=previous_tab
-
-keybind = alt+x=close_surface
-keybind = alt+f=toggle_split_zoom
-
-keybind = alt+o=toggle_tab_overview
+# keybind = shift+ctrl+l=next_tab
+# keybind = shift+ctrl+h=previous_tab
+# keybind = alt+f=toggle_split_zoom
