@@ -34,6 +34,8 @@ require('lazy').setup({
         dependencies = {
             'williamboman/mason.nvim',
             'williamboman/mason-lspconfig.nvim',
+            -- Code actions de LTeX+ (diccionario, desactivar regla, falsos positivos)
+            'barreiroleo/ltex_extra.nvim',
         },
         config = function()
             require('core.plugin_config.mason')

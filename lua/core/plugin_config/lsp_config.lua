@@ -5,6 +5,7 @@ require("mason-lspconfig").setup({
         "ts_ls",
         "pyright",
         "html",
+        "ltex_plus",
     }
 })
 
@@ -25,6 +26,25 @@ vim.lsp.config("pyright", { capabilities = capabilities })
 vim.lsp.config("cssls", { capabilities = capabilities })
 vim.lsp.config("html", { capabilities = capabilities })
 
+-- LTeX+ (LanguageTool): gramática/ortografía + completions + code actions
+vim.lsp.config("ltex_plus", {
+    capabilities = capabilities,
+    on_attach = function()
+        require("ltex_extra").setup({
+            load_langs = { "es-ES" },
+            -- load_langs = { "en-US" },
+            path = vim.fn.stdpath("data") .. "/ltex",
+        })
+    end,
+    settings = {
+        ltex = {
+            language = "es-ES",
+            -- language = "en-US",
+            completionEnabled = true,
+        },
+    },
+})
+
 vim.lsp.enable({
     "lua_ls",
     "ts_ls",
@@ -32,6 +52,7 @@ vim.lsp.enable({
     "pyright",
     "cssls",
     "html",
+    "ltex_plus",
 })
 
 -- Configurar diagnósticos
