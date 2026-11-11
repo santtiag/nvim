@@ -332,4 +332,11 @@ require('lazy').setup({
         },
     },
 
+    -- Code actions con vista previa (mapeo en lsp_config.lua)
+    {
+        'rachartier/tiny-code-action.nvim',
+        event = 'LspAttach',
+        opts = { picker = 'telescope' },
+    },
+
 })

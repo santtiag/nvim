@@ -80,7 +80,7 @@ vim.api.nvim_create_autocmd("LspAttach", {
         vim.keymap.set("n", "<leader>lt", vim.lsp.buf.type_definition,
             vim.tbl_extend("force", opts, { desc = "Type Definition" }))
         vim.keymap.set("n", "<leader>lR", vim.lsp.buf.rename, vim.tbl_extend("force", opts, { desc = "Rename" }))
-        vim.keymap.set({ "n", "v" }, "<leader>lc", vim.lsp.buf.code_action,
+        vim.keymap.set({ "n", "v" }, "<leader>lc", function() require("tiny-code-action").code_action() end,
             vim.tbl_extend("force", opts, { desc = "Code Action" }))
         vim.keymap.set("n", "gr", vim.lsp.buf.references, vim.tbl_extend("force", opts, { desc = "References" }))
         vim.keymap.set("n", "<leader>F", function()
