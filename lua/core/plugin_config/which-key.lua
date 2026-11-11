@@ -76,6 +76,7 @@ wk.add({
     { "<leader>fG", function() require('telescope.builtin').live_grep({ cwd = vim.fn.expand('~') }) end, desc = "Live Grep (cwd)", mode = "n", icon = "󰊄" },
     { "<leader>fh", function() require('telescope.builtin').help_tags() end,             desc = "Help Tags",        mode = "n", icon = "󰮥" },
     { "<leader>fr", function() require('telescope.builtin').oldfiles() end,              desc = "Recent Files",     mode = "n", icon = "" },
+    { "<leader>ft", function() require('telescope.builtin').colorscheme({ enable_preview = true, ignore_builtins = true }) end, desc = "Themes", mode = "n", icon = "󰏘" },
     { "<leader>fb", function() require('telescope.builtin').buffers() end,               desc = "Buffers",          mode = "n", icon = "󰓩" },
     { "<leader>fs", function() require("rip-substitute").sub() end,                      desc = "Search & Replace", mode = { "n", "x" }, icon = "" },
 

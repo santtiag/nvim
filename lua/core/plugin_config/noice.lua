@@ -10,6 +10,10 @@ require("noice").setup({
             calculator = { title = " Calculadora " },
         },
     },
+    routes = {
+        -- tiny-glimmer lo imprime siempre; saldría por cada tema de la vista previa
+        { filter = { event = "msg_show", find = "TinyGlimmer: Reloading" }, opts = { skip = true } },
+    },
     presets = {
         bottom_search = true,     -- use a classic bottom cmdline for search
         command_palette = true,   -- position the cmdline and popupmenu together

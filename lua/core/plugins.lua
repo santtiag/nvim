@@ -22,9 +22,9 @@ require('lazy').setup({
         lazy = true,
         config = use('themes.tokyo-night'),
     },
-    { 'catppuccin/nvim',          name = 'catppuccin', lazy = true },
-    { 'ellisonleao/gruvbox.nvim', lazy = true },
-    { 'rebelot/kanagawa.nvim'},
+    { 'catppuccin/nvim',          name = 'catppuccin', lazy = true, config = use('themes.catppuccin') },
+    { 'ellisonleao/gruvbox.nvim', lazy = true,         config = use('themes.gruvbox') },
+    { 'rebelot/kanagawa.nvim',    lazy = true },
 
     -- LSP
     {

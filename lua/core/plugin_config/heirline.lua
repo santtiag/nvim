@@ -12,14 +12,14 @@ end
 
 local function setup_colors()
     local palette = {}
-    local ok, kanagawa = pcall(require, 'kanagawa.colors')
-    if ok then
-        palette = kanagawa.setup().palette or {}
+    -- solo con Kanagawa activo: el require cargaría el plugin con cualquier tema
+    if (vim.g.colors_name or ''):match('^kanagawa') then
+        palette = require('kanagawa.colors').setup().palette or {}
     end
 
     return {
         ink = palette.sumiInk0 or hex('Normal', 'bg', '#1F1F28') or '#1F1F28',
-        ink4 = palette.sumiInk4 or '#2A2A37',
+        ink4 = palette.sumiInk4 or hex('CursorLine', 'bg', '#2A2A37'),
         fuji = palette.fujiWhite or hex('Normal', 'fg', '#DCD7BA'),
         muted = palette.fujiGray or hex('Comment', 'fg', '#727169'),
         crystal = palette.crystalBlue or hex('Function', 'fg', '#7E9CD8'),

@@ -4,7 +4,7 @@ require("catppuccin").setup({
         light = "latte",
         dark = "mocha",
     },
-    transparent_background = true, -- disables setting the background color.
+    transparent_background = false, -- la transparencia la aplica colorscheme.lua, solo en temas oscuros
     show_end_of_buffer = false,     -- shows the '~' characters after the end of buffers
     term_colors = false,            -- sets terminal colors (e.g. `g:terminal_color_0`)
     dim_inactive = {
