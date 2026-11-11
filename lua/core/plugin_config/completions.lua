@@ -29,8 +29,14 @@ require('blink.cmp').setup({
     snippets = { preset = 'default' }, -- usa vim.snippet + friendly-snippets
 
     sources = {
-        default = { 'lsp', 'path', 'snippets', 'buffer', 'lazydev' },
+        default = { 'lsp', 'path', 'snippets', 'buffer', 'lazydev', 'sqlit' },
         providers = {
+            -- esquema de la base de datos cuando sqlit abre Neovim (<space>o)
+            sqlit = {
+                name = 'sqlit',
+                module = 'core.sqlit_source',
+                score_offset = 50,
+            },
             lazydev = {
                 name = 'LazyDev',
                 module = 'lazydev.integrations.blink',
