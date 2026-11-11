@@ -77,7 +77,6 @@ wk.add({
     { "<leader>fh", function() require('telescope.builtin').help_tags() end,             desc = "Help Tags",        mode = "n", icon = "󰮥" },
     { "<leader>fr", function() require('telescope.builtin').oldfiles() end,              desc = "Recent Files",     mode = "n", icon = "" },
     { "<leader>fb", function() require('telescope.builtin').buffers() end,               desc = "Buffers",          mode = "n", icon = "󰓩" },
-    { "<leader>fp", function() require('harpoon.ui').toggle_quick_menu() end,             desc = "Harpoon Marks",    mode = "n", icon = "󱡁" },
     { "<leader>fs", function() require("rip-substitute").sub() end,                      desc = "Search & Replace", mode = { "n", "x" }, icon = "" },
 
     -- ── Modes / Toggles ───────────────────────────────────────────────
@@ -91,13 +90,6 @@ wk.add({
     { "<leader>S",  group = "Sessions", icon = "󰦛" },
     { "<leader>Sl", "<CMD>Persisted load<CR>",   desc = "Load Session",   mode = "n", icon = "󰦛" },
     { "<leader>Ss", "<CMD>Persisted select<CR>", desc = "Select Session", mode = "n", icon = "󰦛" },
-
-    -- ── Harpoon ───────────────────────────────────────────────────────
-    { "<leader>p",  group = "Harpoon", icon = "" },
-    { "<leader>pa", function() require('harpoon.mark').add_file() end,        desc = "Add File",   mode = "n", icon = "󰐕" },
-    { "<leader>pm", function() require('harpoon.ui').toggle_quick_menu() end, desc = "Quick Menu", mode = "n", icon = "" },
-    { "<leader>pn", function() require('harpoon.ui').nav_next() end,          desc = "Next Mark",  mode = "n", icon = "" },
-    { "<leader>pp", function() require('harpoon.ui').nav_prev() end,          desc = "Prev Mark",  mode = "n", icon = "" },
 
     -- ── Trouble ───────────────────────────────────────────────────────
     { "<leader>x",  group = "Trouble", icon = "" },

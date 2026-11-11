@@ -124,9 +124,6 @@ require('lazy').setup({
         opts = {},
     },
 
-    -- Harpoon (cargado on demand por los mappings de which-key)
-    { 'ThePrimeagen/harpoon', lazy = true },
-
     -- Vista previa de Markdown en el navegador (Lua puro, sin Node ni build)
     {
         'brianhuster/live-preview.nvim',

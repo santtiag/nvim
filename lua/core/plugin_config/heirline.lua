@@ -401,25 +401,6 @@ local FileType = {
     hl = { fg = 'muted' },
 }
 
-local Harpoon = {
-    condition = function()
-        local mark = package.loaded['harpoon.mark']
-        if not mark then return false end
-        local total = mark.get_length()
-        return total and total > 0
-    end,
-    provider = function()
-        local mark = package.loaded['harpoon.mark']
-        local total = mark.get_length()
-        local idx = mark.get_current_index()
-        return string.format(' 󰛢 %s/%d ', idx or '·', total)
-    end,
-    hl = { fg = 'wave' },
-}
-
-local HarpoonBlock = utils.surround({ '', '' }, 'ink4', Harpoon)
-HarpoonBlock.condition = Harpoon.condition
-
 local Ruler = {
     provider = ' %l:%c  %P ',
     hl = { fg = 'ink', bold = true },
@@ -491,7 +472,6 @@ local DefaultStatusline = {
     Space,
     LazyUpdates,
     FileType,
-    HarpoonBlock,
     Space,
     FileEncoding,
     FileFormat,
