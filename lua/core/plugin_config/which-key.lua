@@ -132,6 +132,9 @@ wk.add({
     { "<leader>hdh", function() require('gitsigns').diffthis() end,    desc = "Diff This",     mode = "n", icon = "" },
     { "<leader>hdH", function() require('gitsigns').diffthis('~') end, desc = "Diff This (~)", mode = "n", icon = "" },
 
+    { "<leader>hdd", "<CMD>CodeDiff<CR>",         desc = "Code Diff",    mode = "n", icon = "󰦓" },
+    { "<leader>hdf", "<CMD>CodeDiff history<CR>", desc = "Diff History", mode = "n", icon = "󰋚" },
+
     -- Quickfix
     { "<leader>hq",  group = "Quickfix", mode = "n", icon = "" },
     { "<leader>hqa", function() require('gitsigns').setqflist('all') end, desc = "All Hunks to Quickfix", mode = "n", icon = "" },

@@ -354,4 +354,10 @@ require('lazy').setup({
         opts = { picker = 'telescope' },
     },
 
+    -- Diffs estilo VS Code (mapeos en which-key)
+    {
+        'esmuellert/codediff.nvim',
+        cmd = 'CodeDiff',
+    },
+
 })
