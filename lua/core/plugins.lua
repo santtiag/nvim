@@ -19,8 +19,7 @@ require('lazy').setup({
     -- NOTE: --- THEMES ---
     {
         'folke/tokyonight.nvim',
-        lazy = false,
-        priority = 1000,
+        lazy = true,
         config = use('themes.tokyo-night'),
     },
     { 'catppuccin/nvim',          name = 'catppuccin', lazy = true },
@@ -32,8 +31,8 @@ require('lazy').setup({
         'neovim/nvim-lspconfig',
         event = { 'BufReadPre', 'BufNewFile' },
         dependencies = {
-            'williamboman/mason.nvim',
-            'williamboman/mason-lspconfig.nvim',
+            'mason-org/mason.nvim',
+            'mason-org/mason-lspconfig.nvim',
         },
         config = function()
             require('core.plugin_config.mason')
@@ -144,25 +143,25 @@ require('lazy').setup({
 
     -- Mini
     {
-        'echasnovski/mini.pairs',
+        'nvim-mini/mini.pairs',
         version = '*',
         event = 'InsertEnter',
         config = use('mini-pairs'),
     },
     {
-        'echasnovski/mini.surround',
+        'nvim-mini/mini.surround',
         version = '*',
         event = 'VeryLazy',
         config = use('mini-surround'),
     },
     {
-        'echasnovski/mini.cursorword',
+        'nvim-mini/mini.cursorword',
         version = '*',
         event = { 'BufReadPost', 'BufNewFile' },
         config = use('mini-cursorword'),
     },
     {
-        'echasnovski/mini.indentscope',
+        'nvim-mini/mini.indentscope',
         version = '*',
         event = { 'BufReadPost', 'BufNewFile' },
         config = use('mini-indent-scope'),
@@ -182,7 +181,7 @@ require('lazy').setup({
 
     -- Colorizer - NvChad
     {
-        'NvChad/nvim-colorizer.lua',
+        'catgoose/nvim-colorizer.lua',
         event = { 'BufReadPost', 'BufNewFile' },
         config = use('colorizer'),
     },
@@ -411,4 +410,9 @@ require('lazy').setup({
         },
     },
 
+}, {
+    change_detection = { notify = false },
+    performance = {
+        rtp = { disabled_plugins = { 'gzip', 'tarPlugin', 'tohtml', 'tutor', 'zipPlugin' } },
+    },
 })
