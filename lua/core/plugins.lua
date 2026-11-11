@@ -389,4 +389,11 @@ require('lazy').setup({
         },
     },
 
+    -- Estado flotante por ventana
+    {
+        'b0o/incline.nvim',
+        event = 'VeryLazy',
+        config = use('incline'),
+    },
+
 })
