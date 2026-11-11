@@ -4,32 +4,31 @@ require("mason-lspconfig").setup({
         "cssls",
         "ts_ls",
         "pyright",
+        "ruff",
         "html",
     }
 })
 
-local capabilities = require("blink.cmp").get_lsp_capabilities()
-
 -- Configurar servidores con la API nativa de Neovim 0.11+
+vim.lsp.config("*", { capabilities = require("blink.cmp").get_lsp_capabilities() })
 vim.lsp.config("lua_ls", {
-    capabilities = capabilities,
     settings = {
         Lua = {
             workspace = { checkThirdParty = false },
         },
     },
 })
-vim.lsp.config("ts_ls", { capabilities = capabilities })
-vim.lsp.config("gopls", { capabilities = capabilities })
-vim.lsp.config("pyright", { capabilities = capabilities })
-vim.lsp.config("cssls", { capabilities = capabilities })
-vim.lsp.config("html", { capabilities = capabilities })
+vim.lsp.config("ruff", {
+    on_attach = function(client)
+        client.server_capabilities.hoverProvider = false -- el hover lo da pyright
+    end,
+})
 
 vim.lsp.enable({
     "lua_ls",
     "ts_ls",
-    "gopls",
     "pyright",
+    "ruff",
     "cssls",
     "html",
 })
@@ -84,7 +83,7 @@ vim.api.nvim_create_autocmd("LspAttach", {
             vim.tbl_extend("force", opts, { desc = "Code Action" }))
         vim.keymap.set("n", "gr", vim.lsp.buf.references, vim.tbl_extend("force", opts, { desc = "References" }))
         vim.keymap.set("n", "<leader>F", function()
-            vim.lsp.buf.format({ async = true })
+            require("conform").format({ async = true })
         end, vim.tbl_extend("force", opts, { desc = "Format" }))
     end,
 })

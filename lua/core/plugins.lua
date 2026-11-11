@@ -308,9 +308,9 @@ require('lazy').setup({
     -- render-markdown
     {
         'MeanderingProgrammer/render-markdown.nvim',
-        dependencies = { 'nvim-treesitter/nvim-treesitter', 'nvim-mini/mini.nvim' }, -- if you use the mini.nvim suite
-        -- dependencies = { 'nvim-treesitter/nvim-treesitter', 'nvim-mini/mini.icons' },        -- if you use standalone mini plugins
-        -- dependencies = { 'nvim-treesitter/nvim-treesitter', 'nvim-tree/nvim-web-devicons' }, -- if you prefer nvim-web-devicons
+        ft = 'markdown',
+        cmd = 'RenderMarkdown',
+        dependencies = { 'nvim-treesitter/nvim-treesitter', 'nvim-tree/nvim-web-devicons' },
         ---@module 'render-markdown'
         ---@type render.md.UserConfig
         opts = {},
@@ -319,7 +319,22 @@ require('lazy').setup({
     -- formatter
     {
         'stevearc/conform.nvim',
-        opts = {},
+        cmd = 'ConformInfo', -- también carga al formatear con <leader>F
+        opts = {
+            default_format_opts = { lsp_format = 'fallback' }, -- Lua y demás los formatea el LSP
+            formatters_by_ft = {
+                python = { 'ruff_organize_imports', 'ruff_format' },
+                javascript = { 'prettier' },
+                javascriptreact = { 'prettier' },
+                typescript = { 'prettier' },
+                typescriptreact = { 'prettier' },
+                css = { 'prettier' },
+                html = { 'prettier' },
+                json = { 'prettier' },
+                yaml = { 'prettier' },
+                markdown = { 'prettier' },
+            },
+        },
     },
 
     -- Diagnósticos inline (virtual_text apagado en lsp_config.lua)
