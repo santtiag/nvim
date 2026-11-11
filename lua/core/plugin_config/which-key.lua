@@ -80,21 +80,11 @@ wk.add({
     { "<leader>fp", function() require('harpoon.ui').toggle_quick_menu() end,             desc = "Harpoon Marks",    mode = "n", icon = "󱡁" },
     { "<leader>fs", function() require("rip-substitute").sub() end,                      desc = "Search & Replace", mode = { "n", "x" }, icon = "" },
 
-    -- ── Goto (goto-preview) ───────────────────────────────────────────
-    { "<leader>g",  group = "Goto", icon = "󱥼" },
-    { "<leader>gd", function() require('goto-preview').goto_preview_definition() end,       desc = "Definition",      mode = "n", icon = "" },
-    { "<leader>gD", function() require('goto-preview').goto_preview_declaration() end,      desc = "Declaration",     mode = "n", icon = "󱎸" },
-    { "<leader>gt", function() require('goto-preview').goto_preview_type_definition() end,  desc = "Type Definition", mode = "n", icon = "󱈤" },
-    { "<leader>gi", function() require('goto-preview').goto_preview_implementation() end,   desc = "Implementation",  mode = "n", icon = "󱄽" },
-    { "<leader>gr", function() require('goto-preview').goto_preview_references() end,       desc = "References",      mode = "n", icon = "󰈇" },
-    { "<leader>gP", function() require('goto-preview').close_all_win() end,                 desc = "Close All Windows", mode = "n", icon = "󱄊" },
-
     -- ── Modes / Toggles ───────────────────────────────────────────────
     { "<leader>m",  group = "Modes", icon = "" },
     { "<leader>mm", "<CMD>LivePreview start<CR>",                desc = "Markdown Preview", mode = "n", icon = "" },
     { "<leader>mM", "<CMD>LivePreview close<CR>",               desc = "Stop Preview",     mode = "n", icon = "󰅚" },
     { "<leader>mr", "<CMD>RenderMarkdown toggle<CR>",           desc = "Render Markdown",  mode = "n", icon = "" },
-    { "<leader>mt", function() require("twilight").toggle() end, desc = "Twilight",        mode = "n", icon = "󰨀" },
     { "<leader>mh", "<CMD>Hardtime toggle<CR>",                 desc = "Hardtime",         mode = "n", icon = "󰥔" },
 
     -- ── Sesiones ──────────────────────────────────────────────────────

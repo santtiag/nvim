@@ -270,27 +270,12 @@ require('lazy').setup({
         },
     },
 
-    -- Twilight Nvim
-    {
-        'folke/twilight.nvim',
-        lazy = true,
-        cmd = 'Twilight',
-        opts = {},
-    },
-
     -- Rip Substitute
     {
         'chrisgrieser/nvim-rip-substitute',
         lazy = true,
         cmd = 'RipSubstitute',
         opts = {},
-    },
-
-    -- Goto
-    {
-        'rmagatti/goto-preview',
-        lazy = true, -- cargado por los mappings <leader>g* de which-key
-        config = true,
     },
 
     -- Trouble
