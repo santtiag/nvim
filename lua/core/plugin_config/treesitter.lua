@@ -4,7 +4,7 @@ local ts = require('nvim-treesitter')
 
 -- instalar solo los parsers que falten (install() con la lista completa
 -- relanza descargas en cada arranque)
-local wanted = { 'lua', 'javascript', 'typescript', 'python', 'css', 'html', 'rust' }
+local wanted = { 'lua', 'javascript', 'typescript', 'python', 'css', 'html' }
 local missing = {}
 for _, lang in ipairs(wanted) do
     if #vim.api.nvim_get_runtime_file('parser/' .. lang .. '.*', true) == 0 then

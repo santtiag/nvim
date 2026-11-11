@@ -310,7 +310,6 @@ local lsp_icons = {
     pyright = ' ',
     basedpyright = ' ',
     ts_ls = ' ',
-    rust_analyzer = ' ',
     gopls = ' ',
     clangd = ' ',
     bashls = ' ',
