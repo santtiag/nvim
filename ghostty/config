@@ -17,8 +17,6 @@ background-blur = true
 scrollbar = never
 
 copy-on-select = clipboard
-custom-shader = shaders/cursor_smear.glsl
-custom-shader-animation = true
 split-divider-color = white
 
 bold-is-bright = true

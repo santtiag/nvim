@@ -360,4 +360,13 @@ require('lazy').setup({
         cmd = 'CodeDiff',
     },
 
+    -- Estela del cursor (antes era un shader de Ghostty)
+    {
+        'sphamba/smear-cursor.nvim',
+        event = 'VeryLazy',
+        opts = {
+            legacy_computing_symbols_support = true, -- Iosevka los incluye
+        },
+    },
+
 })
