@@ -25,6 +25,22 @@ require('lazy').setup({
     { 'catppuccin/nvim',          name = 'catppuccin', lazy = true, config = use('themes.catppuccin') },
     { 'ellisonleao/gruvbox.nvim', lazy = true,         config = use('themes.gruvbox') },
     { 'rebelot/kanagawa.nvim',    lazy = true },
+    -- Aparecen solos en <leader>ft; añadir un tema es añadir una línea
+    { 'rose-pine/neovim',              name = 'rose-pine', lazy = true },
+    { 'EdenEast/nightfox.nvim',        lazy = true },
+    { 'navarasu/onedark.nvim',         lazy = true },
+    { 'Mofiqul/dracula.nvim',          lazy = true },
+    { 'gbprod/nord.nvim',              lazy = true },
+    { 'sainnhe/everforest',            lazy = true },
+    { 'sainnhe/gruvbox-material',      lazy = true },
+    { 'sainnhe/sonokai',               lazy = true },
+    { 'projekt0n/github-nvim-theme',   name = 'github-theme', lazy = true },
+    { 'Shatur/neovim-ayu',             lazy = true },
+    { 'vague-theme/vague.nvim',        lazy = true },
+    { 'scottmckendry/cyberdream.nvim', lazy = true },
+    { 'bluz71/vim-moonfly-colors',     name = 'moonfly', lazy = true },
+    { 'bluz71/vim-nightfly-colors',    name = 'nightfly', lazy = true },
+    { 'savq/melange-nvim',             lazy = true },
 
     -- LSP
     {

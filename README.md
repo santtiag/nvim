@@ -15,7 +15,7 @@ A fast, modern Neovim setup — LSP, completion, fuzzy finding, and a polished U
 - 🧠 **LSP & Completion** — native `vim.lsp.config` + `mason`, `blink.cmp`, inline diagnostics, code actions with preview
 - 🧹 **Formatting** — `conform` with ruff (Python) and prettier (web, JSON, YAML, Markdown), falling back to the LSP
 - 🔍 **Navigation** — fff for files and grep, Telescope for the rest, Flash motions, Yazi as a file explorer
-- 🎨 **UI** — switchable themes (Kanagawa, Catppuccin, Gruvbox, Tokyo Night), Heirline statusline, Alpha dashboard, Noice command palette, Dropbar breadcrumbs, Incline, Satellite scrollbar, cursor and yank animations
+- 🎨 **UI** — 19 switchable theme families (Kanagawa by default), Heirline statusline, Alpha dashboard, Noice command palette, Dropbar breadcrumbs, Incline, Satellite scrollbar, cursor and yank animations
 - 🔧 **Git** — Gitsigns, LazyGit, CodeDiff for VS Code style reviews
 - 💾 **Sessions** — per-directory sessions with Persisted, restored from the dashboard
 - 🐍 **Python** — virtual environment switching with venv-selector
