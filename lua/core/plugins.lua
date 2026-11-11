@@ -128,15 +128,10 @@ require('lazy').setup({
     -- Harpoon (cargado on demand por los mappings de which-key)
     { 'ThePrimeagen/harpoon', lazy = true },
 
-    -- MarkdownPreview
+    -- Vista previa de Markdown en el navegador (Lua puro, sin Node ni build)
     {
-        'iamcco/markdown-preview.nvim',
-        cmd = { 'MarkdownPreviewToggle', 'MarkdownPreview', 'MarkdownPreviewStop' },
-        build = 'cd app && yarn install',
-        init = function()
-            vim.g.mkdp_filetypes = { 'markdown' }
-        end,
-        ft = { 'markdown' },
+        'brianhuster/live-preview.nvim',
+        cmd = 'LivePreview',
     },
 
     -- Alpha (dashboard)

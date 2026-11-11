@@ -91,7 +91,8 @@ wk.add({
 
     -- ── Modes / Toggles ───────────────────────────────────────────────
     { "<leader>m",  group = "Modes", icon = "" },
-    { "<leader>mm", "<CMD>MarkdownPreviewToggle<CR>",           desc = "Markdown Preview", mode = "n", icon = "" },
+    { "<leader>mm", "<CMD>LivePreview start<CR>",                desc = "Markdown Preview", mode = "n", icon = "" },
+    { "<leader>mM", "<CMD>LivePreview close<CR>",               desc = "Stop Preview",     mode = "n", icon = "󰅚" },
     { "<leader>mr", "<CMD>RenderMarkdown toggle<CR>",           desc = "Render Markdown",  mode = "n", icon = "" },
     { "<leader>mt", function() require("twilight").toggle() end, desc = "Twilight",        mode = "n", icon = "󰨀" },
     { "<leader>mh", "<CMD>Hardtime toggle<CR>",                 desc = "Hardtime",         mode = "n", icon = "󰥔" },
