@@ -226,18 +226,16 @@ ensure_fd() {
   have fd || warn "fd not on PATH (Ubuntu package is fd-find)"
 }
 
-ensure_yarn() {
-  have yarn && { ok "yarn already installed"; return 0; }
-  if have corepack; then
-    corepack enable >/dev/null 2>&1 || true
-    corepack prepare yarn@stable --activate >/dev/null 2>&1 || true
-  fi
-  have yarn && { ok "yarn via corepack"; return 0; }
-  if have npm; then
-    npm install -g yarn
-  else
-    warn "yarn missing — markdown-preview needs it (install Node first)"
-  fi
+# Mason installs ruff from PyPI, so it needs python3 with venv support.
+ensure_python() {
+  case "$PM" in
+    brew|pacman) ensure_cmd python3 python ;;
+    dnf) ensure_cmd python3 python3 ;;
+    apt)
+      ensure_cmd python3 python3
+      pkg_install python3-venv
+      ;;
+  esac
 }
 
 ensure_iosevka() {
@@ -310,7 +308,7 @@ install_unix_deps() {
   else
     ok "npm already installed"
   fi
-  ensure_yarn
+  ensure_python
 
   if have lazygit; then
     ok "lazygit already installed"
@@ -386,10 +384,19 @@ install_ghostty() {
 
 link_configs() {
   link_file "$ROOT/herdr/config.toml" "$HOME/.config/herdr/config.toml"
-  link_file "$ROOT/ghostty/config" "$HOME/.config/ghostty/config"
-  link_file "$ROOT/ghostty/shaders/cursor_smear.glsl" \
-    "$HOME/.config/ghostty/shaders/cursor_smear.glsl"
+  # Noctalia regenerates themes/noctalia (gitignored); the default covers machines without it.
+  [[ -e "$ROOT/ghostty/themes/noctalia" ]] \
+    || cp "$ROOT/ghostty/themes/noctalia.default" "$ROOT/ghostty/themes/noctalia"
+  link_file "$ROOT/ghostty" "$HOME/.config/ghostty"
   link_file "$ROOT/starship.toml" "$HOME/.config/starship.toml"
+}
+
+# Plugins, plus the Mason tools that are not LSP servers (mason-lspconfig installs those).
+install_nvim_tools() {
+  have nvim || return 0
+  ok "installing Neovim plugins and formatters"
+  nvim --headless "+Lazy! install" "+Lazy load nvim-lspconfig" "+MasonInstall ruff prettier" +qa \
+    || warn "could not install Neovim tools; run :MasonInstall ruff prettier inside nvim"
 }
 
 setup_shell() {
@@ -489,14 +496,14 @@ summary() {
   have fd && fd --version | head -1
   have fzf && fzf --version | head -1
   have node && echo "node $(node -v)"
-  have yarn && echo "yarn $(yarn --version 2>/dev/null)"
+  have python3 && python3 --version
   have lazygit && echo "lazygit $(lazygit --version 2>/dev/null | head -1)"
   have yazi && yazi --version | head -1
   have herdr && herdr --version | head -1
   have starship && starship --version | head -1
   have ghostty && ghostty --version | head -1
   have herdr && herdr integration status || true
-  printf '\n open Ghostty (it launches Herdr). First nvim run installs plugins via lazy.nvim.\n'
+  printf '\n open Ghostty (it launches Herdr).\n'
 }
 
 main() {
@@ -509,6 +516,7 @@ main() {
   install_starship
   install_ghostty
   link_configs
+  install_nvim_tools
   setup_shell
   install_herdr_skill || warn "herdr skill step failed"
   install_herdr_integrations
