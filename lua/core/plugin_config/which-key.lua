@@ -94,6 +94,8 @@ wk.add({
     { "<leader>mm", "<CMD>MarkdownPreviewToggle<CR>",           desc = "Markdown Preview", mode = "n", icon = "" },
     { "<leader>mr", "<CMD>RenderMarkdown toggle<CR>",           desc = "Render Markdown",  mode = "n", icon = "" },
     { "<leader>mt", function() require("twilight").toggle() end, desc = "Twilight",        mode = "n", icon = "󰨀" },
+    { "<leader>mh", "<CMD>Hardtime toggle<CR>",                 desc = "Hardtime",         mode = "n", icon = "󰥔" },
+
     -- ── Sesiones ──────────────────────────────────────────────────────
     { "<leader>S",  group = "Sessions", icon = "󰦛" },
     { "<leader>Sl", "<CMD>Persisted load<CR>",   desc = "Load Session",   mode = "n", icon = "󰦛" },

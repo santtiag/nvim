@@ -412,4 +412,23 @@ require('lazy').setup({
         opts = {},
     },
 
+    -- Hardtime: avisa de malos hábitos sin bloquear
+    {
+        'm4xshen/hardtime.nvim',
+        event = 'VeryLazy',
+        dependencies = { 'MunifTanjim/nui.nvim' },
+        opts = {
+            restriction_mode = 'hint',
+            disable_mouse = false, -- satellite y alpha usan el ratón
+            resetting_keys = { p = false, P = false }, -- p y P son de tiny-glimmer
+            disabled_keys = {
+                ['<Up>'] = false,
+                ['<Down>'] = false,
+                ['<Left>'] = false,
+                ['<Right>'] = false,
+            },
+            disabled_filetypes = { ['codediff.*'] = true, ['fff.*'] = true, dropbar_menu = true },
+        },
+    },
+
 })
