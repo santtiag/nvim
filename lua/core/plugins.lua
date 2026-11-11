@@ -404,4 +404,12 @@ require('lazy').setup({
         config = use('persisted'),
     },
 
+    -- Entornos virtuales de Python
+    {
+        'linux-cultist/venv-selector.nvim',
+        ft = 'python',
+        keys = { { '<leader>lv', '<cmd>VenvSelect<cr>', desc = 'Select Venv', ft = 'python' } },
+        opts = {},
+    },
+
 })
