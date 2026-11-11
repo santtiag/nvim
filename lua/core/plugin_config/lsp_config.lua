@@ -36,9 +36,7 @@ vim.lsp.enable({
 
 -- Configurar diagnósticos
 vim.diagnostic.config({
-    virtual_text = {
-        prefix = "●",
-    },
+    virtual_text = false, -- los muestra tiny-inline-diagnostic
     signs = {
         text = {
             [vim.diagnostic.severity.ERROR] = "",

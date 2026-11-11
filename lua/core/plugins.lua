@@ -322,4 +322,14 @@ require('lazy').setup({
         opts = {},
     },
 
+    -- Diagnósticos inline (virtual_text apagado en lsp_config.lua)
+    {
+        'rachartier/tiny-inline-diagnostic.nvim',
+        event = 'VeryLazy',
+        priority = 1000,
+        opts = {
+            hi = { mixing_color = '#1F1F28' }, -- Normal no tiene fondo del que mezclar
+        },
+    },
+
 })
