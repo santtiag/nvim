@@ -1,6 +1,6 @@
 auto-update = download
 # theme = TokyoNight Night
-theme = Kanagawa Wave
+theme = noctalia
 font-family = "Iosevka Nerd Font Medium"
 font-feature = +liga
 font-feature = +calt
@@ -12,7 +12,7 @@ window-show-tab-bar = auto
 window-width = 170
 window-height = 45
 
-# background-opacity = 0.9
+background-opacity = 0.9
 background-blur = true
 scrollbar = never
 
@@ -44,3 +44,8 @@ keybind = ctrl+shift+t=new_tab
 # keybind = shift+ctrl+l=next_tab
 # keybind = shift+ctrl+h=previous_tab
 # keybind = alt+f=toggle_split_zoom
+
+# >>> herdr-radar font block
+font-codepoint-map = U+E1A0-U+E1BA=Herdr Agent Icons Max
+font-codepoint-map = U+E1C0-U+E1C5=Herdr Agent Icons Max
+# <<< herdr-radar font block
