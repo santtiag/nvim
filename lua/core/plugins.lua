@@ -369,4 +369,15 @@ require('lazy').setup({
         },
     },
 
+    -- Animación al copiar y pegar
+    {
+        'rachartier/tiny-glimmer.nvim',
+        event = 'VeryLazy',
+        priority = 10, -- después del resto, para respetar sus mapeos
+        opts = {
+            autoreload = true,
+            transparency_color = '#1F1F28',
+        },
+    },
+
 })
