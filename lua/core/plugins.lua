@@ -380,4 +380,13 @@ require('lazy').setup({
         },
     },
 
+    -- Scrollbar con diagnósticos y git
+    {
+        'lewis6991/satellite.nvim',
+        event = { 'BufReadPost', 'BufNewFile' },
+        opts = {
+            excluded_filetypes = { 'alpha', 'codediff-explorer', 'codediff-history' },
+        },
+    },
+
 })
