@@ -396,4 +396,12 @@ require('lazy').setup({
         config = use('incline'),
     },
 
+    -- Sesiones por carpeta
+    {
+        'olimorris/persisted.nvim',
+        event = 'BufReadPre',
+        cmd = 'Persisted', -- el botón del dashboard carga antes de abrir un archivo
+        config = use('persisted'),
+    },
+
 })

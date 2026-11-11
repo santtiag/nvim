@@ -94,6 +94,10 @@ wk.add({
     { "<leader>mm", "<CMD>MarkdownPreviewToggle<CR>",           desc = "Markdown Preview", mode = "n", icon = "" },
     { "<leader>mr", "<CMD>RenderMarkdown toggle<CR>",           desc = "Render Markdown",  mode = "n", icon = "" },
     { "<leader>mt", function() require("twilight").toggle() end, desc = "Twilight",        mode = "n", icon = "󰨀" },
+    -- ── Sesiones ──────────────────────────────────────────────────────
+    { "<leader>S",  group = "Sessions", icon = "󰦛" },
+    { "<leader>Sl", "<CMD>Persisted load<CR>",   desc = "Load Session",   mode = "n", icon = "󰦛" },
+    { "<leader>Ss", "<CMD>Persisted select<CR>", desc = "Select Session", mode = "n", icon = "󰦛" },
 
     -- ── Harpoon ───────────────────────────────────────────────────────
     { "<leader>p",  group = "Harpoon", icon = "" },
