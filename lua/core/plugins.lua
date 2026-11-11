@@ -115,11 +115,13 @@ require('lazy').setup({
         end,
     },
 
-    -- Fzf
+    -- fff: archivos y grep (Telescope sigue para ayuda, recientes y buffers)
     {
-        'ibhagwan/fzf-lua',
-        cmd = 'FzfLua',
-        dependencies = { 'nvim-tree/nvim-web-devicons' },
+        'dmtrKovalenko/fff',
+        build = function()
+            require('fff.download').download_or_build_binary()
+        end,
+        lazy = false, -- se inicializa de forma diferida por su cuenta
         opts = {},
     },
 

@@ -70,9 +70,9 @@ wk.add({
 
     -- ── Telescope / Búsqueda ──────────────────────────────────────────
     { "<leader>f",  group = "Find", icon = "" },
-    { "<leader>ff", function() require('telescope.builtin').fd() end,                     desc = "Find Files",       mode = "n", icon = "󰈞" },
+    { "<leader>ff", function() require('fff').find_files() end,                           desc = "Find Files",       mode = "n", icon = "󰈞" },
     { "<leader>fF", function() require('telescope.builtin').fd({ cwd = vim.fn.expand('~') }) end,    desc = "Find Files (cwd)", mode = "n", icon = "󰈞" },
-    { "<leader>fg", function() require('telescope.builtin').live_grep() end,             desc = "Live Grep",        mode = "n", icon = "󰊄" },
+    { "<leader>fg", function() require('fff').live_grep() end,                           desc = "Live Grep",        mode = "n", icon = "󰊄" },
     { "<leader>fG", function() require('telescope.builtin').live_grep({ cwd = vim.fn.expand('~') }) end, desc = "Live Grep (cwd)", mode = "n", icon = "󰊄" },
     { "<leader>fh", function() require('telescope.builtin').help_tags() end,             desc = "Help Tags",        mode = "n", icon = "󰮥" },
     { "<leader>fr", function() require('telescope.builtin').oldfiles() end,              desc = "Recent Files",     mode = "n", icon = "" },
